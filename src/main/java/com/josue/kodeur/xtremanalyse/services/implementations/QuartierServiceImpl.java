@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,10 +26,12 @@ public class QuartierServiceImpl implements QuartierService {
     private final QuartierRepository quartierLocationRepository;
 
     @Override
-    public Quartier save(String nom, Long villeID) throws NotFoundException {
-        Ville ville = villeLocationRepository.findById(villeID)
+    public Quartier save(Quartier quartier) throws NotFoundException {
+        Ville ville = villeLocationRepository.findById(quartier.getVille().getId())
                 .orElseThrow(() -> new NotFoundException("Ville Introuvable"));
-        Quartier quartier = new Quartier(null, nom, ville);
+        quartier.setCreatedAt(LocalDateTime.now());
+        quartier.setUpdateAt(LocalDateTime.now());
+        quartier.setVille(ville);
         quartierLocationRepository.save(quartier);
         return quartier;
     }
@@ -36,9 +39,12 @@ public class QuartierServiceImpl implements QuartierService {
     @Override
     public Quartier update(Long ID,Quartier quartier) throws NotFoundException{
         Quartier currentQuartier = quartierLocationRepository.findById(ID)
-                .orElseThrow(() -> new NotFoundException("Ville Introuvable"));
-        currentQuartier.setName(quartier.getName());
-        currentQuartier.setVille(quartier.getVille());
+                .orElseThrow(() -> new NotFoundException("Quartier Introuvable"));
+        currentQuartier.setVille(villeLocationRepository.findById(quartier
+                .getVille()
+                .getId()).orElseThrow(() -> new NotFoundException("Ville Introuvable")));
+        currentQuartier.setNom(quartier.getNom());
+        currentQuartier.setUpdateAt(LocalDateTime.now());
         return currentQuartier;
     }
 
@@ -51,4 +57,5 @@ public class QuartierServiceImpl implements QuartierService {
     public List<Quartier> listAll() {
         return quartierLocationRepository.findAll();
     }
+
 }

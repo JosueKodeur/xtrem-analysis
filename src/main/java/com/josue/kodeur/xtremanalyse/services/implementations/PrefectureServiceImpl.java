@@ -48,10 +48,13 @@ public class PrefectureServiceImpl implements PrefectureService {
     public Prefecture update(Long ID, Prefecture prefecture) throws NotFoundException {
         Prefecture currentPrefecture = prefectureRepository.findById(ID)
                 .orElseThrow(() -> new NotFoundException("Prefecture Introuvable"));
+        currentPrefecture.setRegion(regionLocationRepository.findById(prefecture
+                        .getRegion()
+                        .getId())
+                .orElseThrow(() ->new  NotFoundException("Region Introuvable")));
         currentPrefecture.setNom(prefecture.getNom());
         currentPrefecture.setNombreHabitant(prefecture.getNombreHabitant());
         currentPrefecture.setUpdateAt(LocalDateTime.now());
-        currentPrefecture.setRegion(prefecture.getRegion());
         return currentPrefecture;
     }
 

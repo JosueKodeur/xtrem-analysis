@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor @NoArgsConstructor
 @Setter @Getter @ToString
@@ -15,10 +16,17 @@ public class Quartier implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name;
+    @Column(nullable = false, length = 40)
+    private String nom;
 
     @ManyToOne
     @JoinColumn(name = "ville_id")
     private Ville ville;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "update_at", nullable = false)
+    private LocalDateTime updateAt;
 
 }

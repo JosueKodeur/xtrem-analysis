@@ -12,8 +12,8 @@ import java.util.List;
 //tutorialRepository.findAll().forEach(tutorials::add);
 
 public interface QuartierService {
-    Quartier save(String nom, Long villeID) throws NotFoundException, NotFoundException;
-    Quartier update(Long ID, Quartier quartier) throws NotFoundException, NotFoundException;
+    Quartier save(Quartier quartier) throws NotFoundException;
+    Quartier update(Long ID, Quartier quartier) throws NotFoundException;
     void delete(Long ID);
     List<Quartier> listAll();
 }

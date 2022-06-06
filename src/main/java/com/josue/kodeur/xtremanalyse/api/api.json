@@ -1,15 +1,738 @@
 {
-  "openapi": "3.0.3",
+  "openapi": "3.0.1" ,
   "info": {
-    "title": "Title",
-    "description": "Title",
-    "version": "1.0.0"
-  },
+    "title": "Xtrem-Analyse Rest Api" ,
+    "version": "v0"
+  } ,
   "servers": [
     {
-      "url": "https"
+      "url": "http://localhost:8080" ,
+      "description": "Generated server url"
     }
-  ],
+  ] ,
   "paths": {
+    "/api/v1/ville/update/{id}": {
+      "put": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "update" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ville"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ville"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/update/{id}": {
+      "put": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "update_1" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/quartiers/update/{id}": {
+      "put": {
+        "tags": [
+          "quartier-controller"
+        ] ,
+        "operationId": "update_2" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Quartier"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quartier"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefecture/update/{id}": {
+      "put": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "update_3" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prefecture"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prefecture"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/add": {
+      "post": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "add" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ville"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ville"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/add": {
+      "post": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "add_1" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/quartiers/add": {
+      "post": {
+        "tags": [
+          "quartier-controller"
+        ] ,
+        "operationId": "add_2" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Quartier"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quartier"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefecture/add": {
+      "post": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "add_3" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prefecture"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prefecture"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/quartiers/{id}": {
+      "get": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "quartiersOfVille" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/QuartierDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/": {
+      "get": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "list" ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Ville"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/prefectures/{id}": {
+      "get": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "prefecturesOfRegion" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/PrefectureDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/": {
+      "get": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "list_1" ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/quartiers/": {
+      "get": {
+        "tags": [
+          "quartier-controller"
+        ] ,
+        "operationId": "list_2" ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Quartier"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefecture/villes/{id}": {
+      "get": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "villesOfPrefecture" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/VilleDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefecture/": {
+      "get": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "list_3" ,
+        "responses": {
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Prefecture"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/delete/{id}": {
+      "delete": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "delete" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/delete/{id}": {
+      "delete": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "delete_1" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/quartiers/delete/{id}": {
+      "delete": {
+        "tags": [
+          "quartier-controller"
+        ] ,
+        "operationId": "delete_2" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefecture/delete/{id}": {
+      "delete": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "delete_3" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  } ,
+  "components": {
+    "schemas": {
+      "Prefecture": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "region": {
+            "$ref": "#/components/schemas/Region"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Region": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Ville": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "prefecture": {
+            "$ref": "#/components/schemas/Prefecture"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Quartier": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "ville": {
+            "$ref": "#/components/schemas/Ville"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "QuartierDto": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "name": {
+            "type": "string"
+          }
+        }
+      } ,
+      "PrefectureDto": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          }
+        }
+      } ,
+      "VilleDto": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          }
+        }
+      }
+    }
   }
 }

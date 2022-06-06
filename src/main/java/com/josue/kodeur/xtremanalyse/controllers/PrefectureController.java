@@ -25,8 +25,6 @@ public class PrefectureController {
 
     @PostMapping("/add")
     public Prefecture add(@RequestBody Prefecture prefecture) throws NotFoundException{
-        prefecture.setCreatedAt(LocalDateTime.now());
-        prefecture.setUpdateAt(LocalDateTime.now());
         return prefectureService.save(prefecture);
     }
 
@@ -34,7 +32,6 @@ public class PrefectureController {
     public Prefecture update(@RequestBody Prefecture prefecture, @PathVariable("id") Long id) throws NotFoundException {
         if (id == null)
             return null;
-        prefecture.setUpdateAt(LocalDateTime.now());
         return prefectureService.update(id, prefecture);
     }
 
@@ -44,7 +41,7 @@ public class PrefectureController {
     }
 
     @GetMapping("/villes/{id}")
-    public List<VilleDto> getOne(@PathVariable("id") Long id){
+    public List<VilleDto> villesOfPrefecture(@PathVariable("id") Long id){
         return prefectureService.findVillesOfPrefecture(id);
     }
 

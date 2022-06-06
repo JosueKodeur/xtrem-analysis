@@ -36,7 +36,7 @@ public class RegionController{
     }
 
     @GetMapping("/prefectures/{id}")
-    public List<PrefectureDto> getOne(@PathVariable("id") Long id){
+    public List<PrefectureDto> prefecturesOfRegion(@PathVariable("id") Long id){
         return regionService.findPrefectures(id);
     }
 
