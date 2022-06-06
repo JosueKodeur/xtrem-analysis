@@ -7,8 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,12 +19,16 @@ public class Region implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(length = 40,nullable = false)
     private String nom;
 
     @Column(nullable = false)
     private Long nombreHabitant;
 
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Prefecture> prefectures = new ArrayList<>();
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "update_at", nullable = false)
+    private LocalDateTime updateAt;
 
 }

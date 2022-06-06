@@ -1,15 +1,13 @@
 package com.josue.kodeur.xtremanalyse.controllers;
 
-import com.josue.kodeur.xtremanalyse.entities.Prefecture;
-import com.josue.kodeur.xtremanalyse.entities.Quartier;
+import com.josue.kodeur.xtremanalyse.dtos.PrefectureDto;
 import com.josue.kodeur.xtremanalyse.entities.Region;
-import com.josue.kodeur.xtremanalyse.entities.Ville;
-import com.josue.kodeur.xtremanalyse.services.LocationService;
+import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
+import com.josue.kodeur.xtremanalyse.services.RegionService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author JosueKodeur
@@ -20,15 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/region")
 public class RegionController{
 
-    LocationService<Region> regionLocationService;
-    LocationService<Prefecture> prefectureLocationService;
-    LocationService<Ville> villeLocationService;
-    LocationService<Quartier> quartierLocationService;
+    private RegionService regionService;
 
     @PostMapping("/add")
-    public Region add(@RequestBody ){
-
+    public Region add(@RequestBody Region region){
+        return regionService.save(region);
     }
 
+    @PutMapping("/update/{id}")
+    public Region update(@RequestBody Region region, @PathVariable("id") Long id) throws NotFoundException {
+        return regionService.update(id, region);
+    }
 
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Long id) throws NotFoundException {
+        regionService.delete(id);
+    }
+
+    @GetMapping("/prefectures/{id}")
+    public List<PrefectureDto> getOne(@PathVariable("id") Long id){
+        return regionService.findPrefectures(id);
+    }
+
+    @GetMapping("/")
+    public List<Region> list(){
+        return regionService.listAll();
+    }
 }

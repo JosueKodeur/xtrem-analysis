@@ -3,12 +3,13 @@ package com.josue.kodeur.xtremanalyse.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @AllArgsConstructor @NoArgsConstructor
 @Setter @Getter @ToString
 @Entity
 @Table(name = "quartiers")
-public class Quartier {
+public class Quartier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
