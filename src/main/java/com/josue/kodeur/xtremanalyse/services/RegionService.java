@@ -1,9 +1,7 @@
 package com.josue.kodeur.xtremanalyse.services;
 
-import com.josue.kodeur.xtremanalyse.dtos.PrefectureDto;
-import com.josue.kodeur.xtremanalyse.dtos.RegionDto;
-import com.josue.kodeur.xtremanalyse.entities.Prefecture;
-import com.josue.kodeur.xtremanalyse.entities.Region;
+import com.josue.kodeur.xtremanalyse.api.dtos.PrefectureDto;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Region;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 
 import java.util.List;

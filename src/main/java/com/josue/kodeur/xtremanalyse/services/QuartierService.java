@@ -1,6 +1,6 @@
 package com.josue.kodeur.xtremanalyse.services;
 
-import com.josue.kodeur.xtremanalyse.entities.Quartier;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Quartier;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 
 import java.util.List;

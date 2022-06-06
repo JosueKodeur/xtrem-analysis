@@ -1,4 +1,4 @@
-package com.josue.kodeur.xtremanalyse.dtos;
+package com.josue.kodeur.xtremanalyse.api.dtos;
 
 import lombok.Getter;
 import lombok.Setter;

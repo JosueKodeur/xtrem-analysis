@@ -1,13 +1,13 @@
 package com.josue.kodeur.xtremanalyse.mappers;
 
-import com.josue.kodeur.xtremanalyse.dtos.PrefectureDto;
-import com.josue.kodeur.xtremanalyse.dtos.QuartierDto;
-import com.josue.kodeur.xtremanalyse.dtos.RegionDto;
-import com.josue.kodeur.xtremanalyse.dtos.VilleDto;
-import com.josue.kodeur.xtremanalyse.entities.Prefecture;
-import com.josue.kodeur.xtremanalyse.entities.Quartier;
-import com.josue.kodeur.xtremanalyse.entities.Region;
-import com.josue.kodeur.xtremanalyse.entities.Ville;
+import com.josue.kodeur.xtremanalyse.api.dtos.PrefectureDto;
+import com.josue.kodeur.xtremanalyse.api.dtos.QuartierDto;
+import com.josue.kodeur.xtremanalyse.api.dtos.RegionDto;
+import com.josue.kodeur.xtremanalyse.api.dtos.VilleDto;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Prefecture;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Quartier;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Region;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Ville;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

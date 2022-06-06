@@ -1,9 +1,9 @@
 package com.josue.kodeur.xtremanalyse.services.implementations;
 
-import com.josue.kodeur.xtremanalyse.dtos.QuartierDto;
-import com.josue.kodeur.xtremanalyse.entities.Prefecture;
-import com.josue.kodeur.xtremanalyse.entities.Quartier;
-import com.josue.kodeur.xtremanalyse.entities.Ville;
+import com.josue.kodeur.xtremanalyse.api.dtos.QuartierDto;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Prefecture;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Quartier;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Ville;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.mappers.MapperService;
 import com.josue.kodeur.xtremanalyse.repositories.PrefectureRepository;

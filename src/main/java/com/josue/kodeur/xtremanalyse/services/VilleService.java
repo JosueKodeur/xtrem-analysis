@@ -1,8 +1,7 @@
 package com.josue.kodeur.xtremanalyse.services;
 
-import com.josue.kodeur.xtremanalyse.dtos.QuartierDto;
-import com.josue.kodeur.xtremanalyse.entities.Quartier;
-import com.josue.kodeur.xtremanalyse.entities.Ville;
+import com.josue.kodeur.xtremanalyse.api.dtos.QuartierDto;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Ville;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 
 import java.util.List;

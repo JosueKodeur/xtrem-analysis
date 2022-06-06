@@ -1,16 +1,12 @@
 package com.josue.kodeur.xtremanalyse.controllers;
 
-import com.josue.kodeur.xtremanalyse.dtos.PrefectureDto;
-import com.josue.kodeur.xtremanalyse.dtos.VilleDto;
-import com.josue.kodeur.xtremanalyse.entities.Prefecture;
-import com.josue.kodeur.xtremanalyse.entities.Region;
+import com.josue.kodeur.xtremanalyse.api.dtos.VilleDto;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Prefecture;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.services.PrefectureService;
-import com.josue.kodeur.xtremanalyse.services.RegionService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

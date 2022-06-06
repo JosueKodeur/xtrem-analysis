@@ -1,4 +1,4 @@
-package com.josue.kodeur.xtremanalyse.dtos;
+package com.josue.kodeur.xtremanalyse.api.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +14,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class PrefectureDto implements Serializable {
-    private Long id;
-    private String nom;
-    private Long nombreHabitant;
+public class RegionDto implements Serializable {
+    private  Long id;
+    private  String nom;
+    private  Long nombreHabitant;
 }

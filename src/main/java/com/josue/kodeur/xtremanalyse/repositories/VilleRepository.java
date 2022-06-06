@@ -1,8 +1,6 @@
 package com.josue.kodeur.xtremanalyse.repositories;
 
-import com.josue.kodeur.xtremanalyse.entities.Prefecture;
-import com.josue.kodeur.xtremanalyse.entities.Region;
-import com.josue.kodeur.xtremanalyse.entities.Ville;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Ville;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

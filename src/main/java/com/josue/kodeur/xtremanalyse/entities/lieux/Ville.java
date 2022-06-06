@@ -1,4 +1,4 @@
-package com.josue.kodeur.xtremanalyse.entities;
+package com.josue.kodeur.xtremanalyse.entities.lieux;
 
 
 import lombok.AllArgsConstructor;

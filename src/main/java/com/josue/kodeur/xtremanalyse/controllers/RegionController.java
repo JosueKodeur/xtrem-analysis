@@ -1,7 +1,7 @@
 package com.josue.kodeur.xtremanalyse.controllers;
 
-import com.josue.kodeur.xtremanalyse.dtos.PrefectureDto;
-import com.josue.kodeur.xtremanalyse.entities.Region;
+import com.josue.kodeur.xtremanalyse.api.dtos.PrefectureDto;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Region;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.services.RegionService;
 import lombok.AllArgsConstructor;

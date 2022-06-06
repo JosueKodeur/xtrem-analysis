@@ -1,7 +1,7 @@
 package com.josue.kodeur.xtremanalyse.services.implementations;
 
-import com.josue.kodeur.xtremanalyse.entities.Quartier;
-import com.josue.kodeur.xtremanalyse.entities.Ville;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Quartier;
+import com.josue.kodeur.xtremanalyse.entities.lieux.Ville;
 import com.josue.kodeur.xtremanalyse.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.repositories.QuartierRepository;
 import com.josue.kodeur.xtremanalyse.repositories.VilleRepository;
