@@ -1,6 +1,8 @@
 package com.josue.kodeur.xtremanalyse.security.config;
 
 import com.josue.kodeur.xtremanalyse.security.entities.User;
+import com.josue.kodeur.xtremanalyse.security.entities.UserPrincipal;
+import com.josue.kodeur.xtremanalyse.security.exceptions.AccountLockedException;
 import com.josue.kodeur.xtremanalyse.security.exceptions.PasswordError;
 import com.josue.kodeur.xtremanalyse.security.filters.AccessDeniedHandler;
 import com.josue.kodeur.xtremanalyse.security.filters.AuthEntryPoint;
@@ -8,11 +10,10 @@ import com.josue.kodeur.xtremanalyse.security.filters.JwtAuthorizationFilter;
 import com.josue.kodeur.xtremanalyse.security.services.UserService;
 import com.josue.kodeur.xtremanalyse.application.utils.Constants;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,8 +21,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,7 +28,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.*;
 
 /**
  * @author JosueKodeur
@@ -37,10 +35,9 @@ import java.util.*;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @AllArgsConstructor
-@Slf4j
-public class SecurityConfig {
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+public class SecurityConfig{
 
     private final UserService userService;
     private JwtAuthorizationFilter jwtAuthorizationFilter;
@@ -48,7 +45,10 @@ public class SecurityConfig {
     private AuthEntryPoint authEntryPoint;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        return http.csrf()
+        http.authorizeRequests()
+                 .antMatchers(Constants.PUBLIC_URL)
+                .permitAll();
+        http.csrf()
                 .disable()
                 .cors()
                 .and()
@@ -57,14 +57,14 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint(authEntryPoint)
                 .and()
-                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
     }
 
     @Bean
@@ -80,14 +80,11 @@ public class SecurityConfig {
             @Override
             public UserDetails loadUserByUsername(String matricule) throws UsernameNotFoundException {
                 User user = userService.loadUserByMatricule(matricule);
-                Collection<GrantedAuthority> authorities = new ArrayList<>();
-                user.getRoles().forEach(role -> {
-                    authorities.add(new SimpleGrantedAuthority(role.getNom()));
-                });
+                UserPrincipal userPrincipal = new UserPrincipal(user);
                 return new org.springframework.security.core.userdetails.User(
                         user.getUserMatricule(),
                         user.getPassword(),
-                        authorities
+                        userPrincipal.getAuthorities()
                 );
             }
         };
@@ -100,27 +97,22 @@ public class SecurityConfig {
             String username = authentication.getPrincipal() + "";
             String password = authentication.getCredentials() + "";
 
-            User user = userService.loadUserByMatricule(username);
+            UserPrincipal userPrincipal = new UserPrincipal(userService.loadUserByMatricule(username));
 
-            if (!encoder.matches(password, user.getPassword())) {
-                throw new PasswordError();
+            if (StringUtils.isNotEmpty(password)){
+                if (!encoder.matches(password, userPrincipal.getPassword())) {
+                    throw new PasswordError("");
+                }
+
+                if (!userPrincipal.isEnabled()) {
+                    throw new DisabledException("User account is not active");
+                }
+                if (!userPrincipal.isAccountNonLocked()) {
+                    throw new AccountLockedException("");
+                }
+                return new UsernamePasswordAuthenticationToken(username, null, userPrincipal.getAuthorities());
             }
-
-            if (!user.getIsActive()) {
-                throw new DisabledException("User account is not active");
-            }
-            if (!user.getIsNotLocked()) {
-                throw new DisabledException("User account is not active");
-            }
-
-            Collection<GrantedAuthority> authorities = new ArrayList<>();
-            user.getRoles().forEach(
-                    role -> {
-                        authorities.add(new SimpleGrantedAuthority(role.getNom()));
-                    }
-            );
-
-            return new UsernamePasswordAuthenticationToken(username, null, authorities);
+            return null;
         };
     }
 

@@ -3,6 +3,7 @@ package com.josue.kodeur.xtremanalyse.application.entities.accidents;
 import com.josue.kodeur.xtremanalyse.application.entities.lieux.Ville;
 import com.josue.kodeur.xtremanalyse.application.entities.lieux.ClassificationRoute;
 import com.josue.kodeur.xtremanalyse.application.entities.lieux.TypeRoute;
+import com.josue.kodeur.xtremanalyse.security.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,110 +24,107 @@ import java.util.List;
 public class Accident {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = true)
     private Long id;
 
-    @Column(name = "date_accident", nullable = false)
+    @Column(name = "date_accident", nullable = true)
     private LocalDate dateAccident;
 
-    @Column(name = "heure", nullable = false)
+    @Column(name = "heure", nullable = true)
     private LocalDateTime heure;
 
-    @Column(name = "zone", nullable = false)
+    @Column(name = "zone", nullable = true)
     private String zone;
 
-    @Column(name = "quartier", nullable = false, length = 70)
+    @Column(name = "quartier", nullable = true, length = 70)
     private String quartier;
 
-    @Column(name = "intersection_accident", nullable = false)
+    @Column(name = "intersection_accident", nullable = true)
     private String intersectionAccident;
 
-    @Column(name = "intersection", nullable = false, length = 150)
+    @Column(name = "intersection", nullable = true, length = 150)
     private String pointRepere;
 
-    @Column(name = "latitude", nullable = false)
+    @Column(name = "latitude", nullable = true)
     private Float latitude;
 
-    @Column(name = "longitude", nullable = false)
+    @Column(name = "longitude", nullable = true)
     private Float longitude;
 
-    @Column(name = "route", nullable = false, length = 100)
+    @Column(name = "route", nullable = true, length = 100)
     private String route;
 
-    @Column(name = "circonstance_resume", nullable = false, length = 255)
+    @Column(name = "troncon", length = 150, nullable = false)
+    private String troncon;
+
+    @Column(name = "circonstance_resume", nullable = true, length = 255)
     private String circonstanceResume;
 
-    @Column(name = "type_jour", nullable = false)
+    @Column(name = "type_jour", nullable = true)
     private String typeJour;
 
-    @Column(name = "codification_causes", nullable = false, length = 255)
+    @Column(name = "codification_causes", nullable = true, length = 255)
     private String codificationCauses;
 
-    @Column(name = "lumiere", nullable = false, length = 120)
+    @Column(name = "lumiere", nullable = true, length = 120)
     private String lumiere;
 
-    @Column(name = "profil_lieu", nullable = false, length = 40)
+    @Column(name = "profil_lieu", nullable = true, length = 40)
     private String profilLieu;
 
-    @Column(name = "condition_atmospherique", nullable = false, length = 40)
+    @Column(name = "condition_atmospherique", nullable = true, length = 40)
     private String conditionAtmospherique;
 
-    @Column(name = "is_marquage_sol", nullable = false, length = 5)
+    @Column(name = "is_marquage_sol", nullable = true, length = 5)
     private Boolean isMarquageSol;
 
-    @Column(name = "trace_sol", nullable = false, length = 40)
+    @Column(name = "trace_sol", nullable = true, length = 40)
     private String traceSol;
 
-    @Column(name = "etat_chaussee", nullable = false, length = 120)
+    @Column(name = "etat_chaussee", nullable = true, length = 120)
     private String etatChaussee;
 
-    @Column(name = "controle_carrefour", nullable = false, length = 120)
+    @Column(name = "controle_carrefour", nullable = true, length = 120)
     private String controleCarrefour;
 
     @Min(value = 0)
-    @Column(name = "surface_atteinte", nullable = false, length = 40)
+    @Column(name = "surface_atteinte", nullable = true, length = 40)
     private double surfaceAtteinte;
 
     @Min(value = 0)
-    @Column(name = "nombre_morts", nullable = false)
+    @Column(name = "nombre_morts", nullable = true)
     private int nombreMorts;
 
     @Min(value = 0)
-    @Column(name = "nombre_vehicules_impliques", nullable = false)
+    @Column(name = "nombre_vehicules_impliques", nullable = true)
     private int nombreVehiculesImpliques;
 
     @Min(value = 0)
-    @Column(name = "nombre_panneaux_atteints", nullable = false)
+    @Column(name = "nombre_panneaux_atteints", nullable = true)
     private int nombrePanneauxAtteints;
 
     @Min(value = 0)
-    @Column(name = "nombre_balises_atteintes", nullable = false)
+    @Column(name = "nombre_balises_atteintes", nullable = true)
     private int nombreBalisesAtteintes;
 
     @Min(value = 0)
-    @Column(name = "nombre_glissieres_atteintes", nullable = false)
+    @Column(name = "nombre_glissieres_atteintes", nullable = true)
     private int nombreGlissieresAtteintes;
 
     @Min(value = 0)
-    @Column(name = "nombre_poteaux_atteints", nullable = false)
+    @Column(name = "nombre_poteaux_atteints", nullable = true)
     private int nombrePoteauxAtteints;
 
     @Min(value = 0)
-    @Column(name = "nombre_garde_fou_atteints", nullable = false)
+    @Column(name = "nombre_garde_fou_atteints", nullable = true)
     private int nombreGardeFouAtteints;
 
     @Min(value = 0)
-    @Column(name = "nombre_ouvrage_beton_atteints", nullable = false)
+    @Column(name = "nombre_ouvrage_beton_atteints", nullable = true)
     private int nombreOuvrageBetonAtteints;
 
-    @Column(name = "autre_degats", nullable = false, length = 120)
+    @Column(name = "autre_degats", nullable = true, length = 120)
     private String autreDegats;
-
-    @Column(name = "carte_grise_image_recto", nullable = false)
-    private String carteGriseImageRecto;
-
-    @Column(name = "carte_grise_image_verso", nullable = false, length = 120)
-    private String carteGriseImageVerso;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Image> images = new ArrayList<>();
@@ -140,6 +138,8 @@ public class Accident {
     @ManyToOne
     private ClassificationRoute classificationRoute;
 
+    @ManyToOne
+    private User user;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

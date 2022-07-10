@@ -11,18 +11,18 @@ import javax.persistence.*;
  * @author JosueKodeur
  */
 
-@Setter @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name = "nom", nullable = false, unique = true, length = 20)
+    @Column(name = "nom", length = 20)
     private String nom;
-
 }

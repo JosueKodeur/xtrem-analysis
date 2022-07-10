@@ -1,9 +1,6 @@
 package com.josue.kodeur.xtremanalyse.application.services.accidents;
 
-import com.josue.kodeur.xtremanalyse.application.entities.personnes.Conducteur;
-import com.josue.kodeur.xtremanalyse.application.entities.personnes.Passager;
 import com.josue.kodeur.xtremanalyse.application.entities.personnes.PersonneImpliquee;
-import com.josue.kodeur.xtremanalyse.application.entities.personnes.Pieton;
 import com.josue.kodeur.xtremanalyse.application.exceptions.NotFoundException;
 
 /**
@@ -11,7 +8,7 @@ import com.josue.kodeur.xtremanalyse.application.exceptions.NotFoundException;
  */
 
 public interface PersonneImpliqueeService {
-    PersonneImpliquee save(Conducteur conducteur, Pieton pieton, Passager passager) throws NotFoundException;
-    PersonneImpliquee details() throws NotFoundException;
+    PersonneImpliquee save(PersonneImpliquee personneImpliquee) throws NotFoundException;
+    PersonneImpliquee details(Long id) throws NotFoundException;
     void delete(Long ID) throws NotFoundException;
 }

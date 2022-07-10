@@ -14,9 +14,9 @@ import java.util.List;
 
 
 public interface AccidentService {
-    Accident save(Accident accident, List<MultipartFile> images) throws NotFoundException, IOException;
+    Accident save(Accident accident, String userMatricule, Long classificationRouteId, Long typeRouteId, Long villeId, List<MultipartFile> images) throws NotFoundException, IOException;
     void delete(Long ID) throws NotFoundException;
-    Accident update(Long ID, Accident accident, List<MultipartFile> images) throws NotFoundException, IOException;
+    Accident update(Long ID, Accident accident, String userMatricule, Long classificationRouteId, Long typeRouteId, Long villeId,  List<MultipartFile> images) throws NotFoundException, IOException;
     List<Accident> listAll();
     Accident details(Long ID) throws NotFoundException;
     List<PersonneImpliqueeInfo> listPersonnesImpliqueeDansAccident(Long ID) throws NotFoundException;

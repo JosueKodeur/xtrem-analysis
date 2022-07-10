@@ -1,6 +1,6 @@
 package com.josue.kodeur.xtremanalyse.application.entities.accidents;
 
-import com.josue.kodeur.xtremanalyse.application.entities.personnes.Conducteur;
+import com.josue.kodeur.xtremanalyse.application.entities.personnes.PersonneImpliquee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -68,6 +68,6 @@ public class Vehicule {
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "conducteur_id", insertable = false, updatable = false)
-    private Conducteur conducteur;
+    private PersonneImpliquee personneImpliquee;
 
 }

@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
- * @author JosueKodeur
+ * @author GhostKodeur
  * **/
 
 @AllArgsConstructor
@@ -20,7 +22,7 @@ import java.util.Date;
 @Getter @Setter
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
@@ -28,6 +30,9 @@ public class User {
 
     @Column(name = "user_matricule", nullable = false, length = 50, unique = true)
     private String userMatricule;
+
+    @Column(name = "nom", length = 50)
+    private String nom;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable = false)
@@ -42,14 +47,19 @@ public class User {
     @Column(name = "join_date")
     private Date joinDate;
 
+    @Column(name = "is_active", length = 1, nullable = false)
+    private boolean isActive;
 
-    @Column(name = "is_active", length = 5)
-    private Boolean isActive;
+    @Column(name = "is_not_locked", length = 1, nullable = false)
+    private boolean isNotLocked;
 
-    @Column(name = "is_not_locked", length = 5)
-    private Boolean isNotLocked;
+    @Transient
+    private String token;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+    @Transient
+    private boolean isTokenValid=false;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<Role> roles=new ArrayList<>();
 
 }

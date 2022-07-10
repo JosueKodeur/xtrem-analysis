@@ -25,6 +25,7 @@ public class XtremAnalyseApplication {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     public static void main(String[] args) {
         SpringApplication.run(XtremAnalyseApplication.class, args);
         new File(System.getProperty(SERVER_FOLDER)+BASE_FOLDER).mkdirs();

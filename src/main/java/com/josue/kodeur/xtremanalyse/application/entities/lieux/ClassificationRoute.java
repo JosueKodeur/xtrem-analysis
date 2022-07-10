@@ -20,10 +20,4 @@ public class ClassificationRoute {
     @Column(name = "nom", length = 40, nullable = false)
     private String nom;
 
-    @Column(name = "rue", length = 150, nullable = false)
-    private String rue;
-
-    @Column(name = "troncon", length = 150, nullable = false)
-    private String troncon;
-
 }

@@ -42,7 +42,7 @@ public class ImageServiceImpl implements ImageService {
 
     private String setImageUrl(String name) {
         return ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/v1/"+ACCIDENT_IMAGE_FOLDER+name+"_"+APPLICATION_NAME+"."+IMAGE_EXTENSION)
+                .path("/api/v1/"+ACCIDENT_IMAGE_FOLDER+name+APPLICATION_NAME+"."+IMAGE_EXTENSION)
                 .toUriString();
     }
 }

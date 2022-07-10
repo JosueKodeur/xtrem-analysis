@@ -12,8 +12,8 @@ import com.josue.kodeur.xtremanalyse.application.repositories.lieux.VilleReposit
 import com.josue.kodeur.xtremanalyse.application.repositories.personnes.PersonneImpliqueeRepository;
 import com.josue.kodeur.xtremanalyse.application.services.accidents.AccidentService;
 import com.josue.kodeur.xtremanalyse.application.services.accidents.ImageService;
+import com.josue.kodeur.xtremanalyse.security.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,13 +28,13 @@ import java.util.List;
  * @author JosueKodeur
  */
 
-@Slf4j
 @Service
 @Transactional
 @AllArgsConstructor
 public class AccidentServiceImpl implements AccidentService {
 
     private final AccidentRepository accidentRepository;
+    private final UserRepository userRepository;
     private final TypeRouteRepository typeRouteRepository;
     private final ClassificationRouteRepository classificationRouteRepository;
     private final PersonneImpliqueeRepository personneImpliqueeRepository;
@@ -43,19 +43,23 @@ public class AccidentServiceImpl implements AccidentService {
     private final VilleRepository villeRepository;
 
     @Override
-    public Accident save(Accident accident, List<MultipartFile> files) throws NotFoundException, IOException {
+    public Accident save(Accident accident,
+                         String userMatricule,
+                         Long classificationRouteId,
+                         Long typeRouteId,
+                         Long villeId,List<MultipartFile> files) throws NotFoundException, IOException {
         accident.setDateAccident(LocalDate.now());
+        accident.setUser(userRepository.findByUserMatricule(userMatricule));
 
-        accident.setVille(villeRepository.findById(accident.getVille()
-                        .getId())
+        accident.setVille(villeRepository.findById(villeId)
                 .orElseThrow(() -> new NotFoundException("Ville introuvable")));
 
-        accident.setTypeRoute(typeRouteRepository.findById(accident.getTypeRoute()
-                        .getId())
+        accident.setTypeRoute(typeRouteRepository.findById(typeRouteId)
                 .orElseThrow(() -> new NotFoundException("Type de Route introuvable")));
-        accident.setClassificationRoute(classificationRouteRepository.findById(accident.getClassificationRoute()
-                        .getId())
+
+        accident.setClassificationRoute(classificationRouteRepository.findById(classificationRouteId)
                 .orElseThrow(() -> new NotFoundException("Classification de route introuvable")));
+
         accident.setUpdateAt(LocalDateTime.now());
         accident.setCreatedAt(LocalDateTime.now());
         accidentRepository.save(accident);
@@ -76,25 +80,23 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     @Override
-    public Accident update(Long ID, Accident accident, List<MultipartFile> images) throws NotFoundException, IOException {
+    public Accident update(Long ID, Accident accident,
+                           String userMatricule,
+                           Long classificationRouteId,
+                           Long typeRouteId, Long villeId, List<MultipartFile> images) throws NotFoundException, IOException {
         Accident currentAccident = accidentRepository.findById(ID)
                 .orElseThrow(() -> new NotFoundException("Element introuvable"));
-        currentAccident.setUpdateAt(LocalDateTime.now());
 
-        currentAccident.setVille(villeRepository.findById(accident.getVille()
-                        .getId())
+        currentAccident.setVille(villeRepository.findById(villeId)
                 .orElseThrow(() -> new NotFoundException("Ville introuvable")));
 
-        currentAccident.setTypeRoute(typeRouteRepository.findById(accident.getTypeRoute()
-                        .getId())
+        currentAccident.setTypeRoute(typeRouteRepository.findById(typeRouteId)
                 .orElseThrow(() -> new NotFoundException("Type de Route introuvable")));
-        currentAccident.setClassificationRoute(classificationRouteRepository.findById(accident.getClassificationRoute()
-                        .getId())
+        currentAccident.setClassificationRoute(classificationRouteRepository.findById(classificationRouteId)
                 .orElseThrow(() -> new NotFoundException("Classification de route introuvable")));
+        currentAccident.setUpdateAt(LocalDateTime.now());
         currentAccident.setQuartier(accident.getQuartier());
         currentAccident.setDateAccident(accident.getDateAccident());
-        currentAccident.setCarteGriseImageRecto(accident.getCarteGriseImageRecto());
-        currentAccident.setCarteGriseImageVerso(accident.getCarteGriseImageVerso());
         currentAccident.setHeure(accident.getHeure());
         currentAccident.setZone(accident.getZone());
         currentAccident.setIntersectionAccident(accident.getIntersectionAccident());
@@ -102,6 +104,7 @@ public class AccidentServiceImpl implements AccidentService {
         currentAccident.setLatitude(accident.getLatitude());
         currentAccident.setLongitude(accident.getLongitude());
         currentAccident.setRoute(accident.getRoute());
+        currentAccident.setTroncon(accident.getTroncon());
         currentAccident.setCirconstanceResume(accident.getCirconstanceResume());
         currentAccident.setLumiere(accident.getLumiere());
         currentAccident.setProfilLieu(accident.getProfilLieu());
@@ -121,7 +124,6 @@ public class AccidentServiceImpl implements AccidentService {
         currentAccident.setNombreGardeFouAtteints(accident.getNombreGardeFouAtteints());
         currentAccident.setNombreOuvrageBetonAtteints(accident.getNombreOuvrageBetonAtteints());
         currentAccident.setAutreDegats(accident.getAutreDegats());
-
         List<Image> files = new ArrayList<>();
 
         for (MultipartFile image: images) {

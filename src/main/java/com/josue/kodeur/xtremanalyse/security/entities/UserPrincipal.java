@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 /**
  * @author JosueKodeur
@@ -19,10 +22,11 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (Role r: user.getRoles()){
-            authorities.add(new SimpleGrantedAuthority(r.getNom()));
-        }
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        user.getRoles().forEach(
+                role -> authorities.add(new SimpleGrantedAuthority(role.getNom()))
+        );
+
         return authorities;
     }
 
@@ -43,16 +47,16 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.getIsNotLocked();
+        return user.isNotLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return user.isTokenValid();
     }
 
     @Override
     public boolean isEnabled() {
-        return user.getIsActive();
+        return user.isActive();
     }
 }

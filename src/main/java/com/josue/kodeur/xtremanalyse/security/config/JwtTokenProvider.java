@@ -32,19 +32,14 @@ import java.util.stream.Collectors;
 public class JwtTokenProvider {
 
     public String generateToken(UserPrincipal user){
-        List<String> claims = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
+        String[] claims = getClaimsFromUser(user);
         Algorithm algorithm = Algorithm.HMAC512(JWT_SECRET.getBytes());
         return JWT.create()
                 .withIssuer(APPLICATION_NAME)
                 .withSubject(user.getUsername())
-                .withClaim("roles", claims)
+                .withArrayClaim(AUTHORITIES, claims)
                 .withExpiresAt(new Date(System.currentTimeMillis()+JWT_EXPIRATION))
                 .sign(algorithm);
-    }
-
-    public List<GrantedAuthority> getAuthorities(String token){
-        String[] roles  = getClaimsFromToken(token);
-        return stream(roles).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     public Authentication getAuthentication(String username, List<GrantedAuthority> authorities, HttpServletRequest request){
@@ -69,8 +64,6 @@ public class JwtTokenProvider {
 
     private boolean isTokenExpired(JWTVerifier verifier, String token) {
         Date expiration = verifier.verify(token).getExpiresAt();
-        if (expiration.before(new Date()))
-            throw new TokenExpiredException("gvvvgbgbg");
         return expiration.before(new Date());
     }
 
@@ -87,13 +80,18 @@ public class JwtTokenProvider {
 
     private String[] getClaimsFromToken(String token){
         JWTVerifier verifier = getVerifier();
-        return verifier.verify(token).getClaim("roles").asArray(String.class);
+        return verifier.verify(token).getClaim(AUTHORITIES).asArray(String.class);
     }
 
-    private String[] getClaimsFromUser(User user){
+    public List<GrantedAuthority> getAuthorities(String token){
+        String[] roles  = getClaimsFromToken(token);
+        return stream(roles).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    }
+
+    private String[] getClaimsFromUser(UserPrincipal user){
         List<String> authorities = new ArrayList<>();
-        for (GrantedAuthority ga: user.getAuthorities()) {
-            authorities.add(ga.getAuthority());
+        for (GrantedAuthority grantedAuthority: user.getAuthorities()) {
+            authorities.add(grantedAuthority.getAuthority());
         }
 
         return authorities.toArray(new String[0]);

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
- * @author JosueKodeur
+ * @author GhostKodeur
  */
 
 @ControllerAdvice
@@ -24,11 +24,16 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
     private static final String ACCOUNT_DISABLED = "Votre compte est " +
             "temporairement désactivé, veuillez Contactez la direction.";
 
-    private static final String ACCESS_DENIED = "Vous devriez vous connecter pour accéder à cette ressource";
+    private static final String ACCOUNT_LOCKED = "Votre compte est bloqué, veuillez Contactez la direction.";
+
+    private static final String ACCESS_DENIED = "Vous n'êtes pas autorisé à acceder à cette ressource";
 
     private static final String MATRICULE_NOT_FOUND = "Matricule introuvable";
+    private static final String MATRICULE_EXIST = "Le matricule existe déjà";
 
-    private static final String TOKEN_EXPIRED = "Session terminée.";
+    private static final String TOKEN_EXPIRED = "Veuillez vous reconnecter, votre est session terminée.";
+    private static final String CREDENTIAL_ERROR = "Mot de passe Incorrect, " +
+            "Réessayez. Si vous avez oublié votre adresse veuillez contactez la direction";
 
 
     @ExceptionHandler(value = DisabledException.class)
@@ -47,12 +52,23 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
         return createResponse(HttpStatus.UNAUTHORIZED, ACCESS_DENIED);
     }
 
-    @ExceptionHandler(PasswordError.class)
-    public ResponseEntity<HttpResponse> passwordError(){
-        return createResponse(HttpStatus.BAD_REQUEST, TOKEN_EXPIRED);
+    @ExceptionHandler(AccountLockedException.class)
+    public ResponseEntity<HttpResponse> lockedAccount(){
+        return createResponse(HttpStatus.UNAUTHORIZED, ACCOUNT_LOCKED);
     }
 
-    @ExceptionHandler(value = TokenExpiredException.class)
+    @ExceptionHandler(MatriculeExistException.class)
+    public ResponseEntity<HttpResponse> matriculeExist(){
+        return createResponse(HttpStatus.BAD_REQUEST, MATRICULE_EXIST);
+    }
+
+
+    @ExceptionHandler(PasswordError.class)
+    public ResponseEntity<HttpResponse> passwordError(){
+        return createResponse(HttpStatus.BAD_REQUEST, CREDENTIAL_ERROR);
+    }
+
+    @ExceptionHandler(value = SessionExpired.class)
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
     public ResponseEntity<HttpResponse> tokenExpired(){
         return createResponse(HttpStatus.UNAUTHORIZED, TOKEN_EXPIRED);
