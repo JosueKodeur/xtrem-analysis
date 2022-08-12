@@ -22,13 +22,18 @@ public class ProfessionServiceImpl implements ProfessionService {
     private final ProfessionRepository professionRepository;
 
     @Override
-    public Profession add(Profession profession) { return professionRepository.save(profession); }
+    public Profession add(Profession profession) {
+        profession.setCreatedAt(LocalDateTime.now());
+        profession.setUpdateAt(LocalDateTime.now());
+        return professionRepository.save(profession);
+    }
 
     @Override
     public Profession update(Profession profession, Long id) {
         Profession oldProfession = professionRepository.findById(id).orElse(null);
         if (oldProfession != null){
             oldProfession.setNom(profession.getNom());
+            oldProfession.setDescription(profession.getDescription());
             oldProfession.setUpdateAt(LocalDateTime.now());
         }
         return oldProfession;

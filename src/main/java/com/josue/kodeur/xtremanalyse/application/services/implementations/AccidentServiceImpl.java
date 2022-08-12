@@ -1,15 +1,16 @@
 package com.josue.kodeur.xtremanalyse.application.services.implementations;
 
-import com.josue.kodeur.xtremanalyse.application.dtos.projections.PersonneImpliqueeInfo;
 import com.josue.kodeur.xtremanalyse.application.entities.accidents.Accident;
 import com.josue.kodeur.xtremanalyse.application.entities.accidents.Image;
+import com.josue.kodeur.xtremanalyse.application.entities.accidents.Vehicule;
 import com.josue.kodeur.xtremanalyse.application.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.application.repositories.accidents.AccidentRepository;
+import com.josue.kodeur.xtremanalyse.application.repositories.accidents.AssuranceRepository;
 import com.josue.kodeur.xtremanalyse.application.repositories.accidents.ImageRepository;
+import com.josue.kodeur.xtremanalyse.application.repositories.accidents.VehiculeRepository;
 import com.josue.kodeur.xtremanalyse.application.repositories.lieux.ClassificationRouteRepository;
 import com.josue.kodeur.xtremanalyse.application.repositories.lieux.TypeRouteRepository;
 import com.josue.kodeur.xtremanalyse.application.repositories.lieux.VilleRepository;
-import com.josue.kodeur.xtremanalyse.application.repositories.personnes.PersonneImpliqueeRepository;
 import com.josue.kodeur.xtremanalyse.application.services.accidents.AccidentService;
 import com.josue.kodeur.xtremanalyse.application.services.accidents.ImageService;
 import com.josue.kodeur.xtremanalyse.security.repositories.UserRepository;
@@ -19,10 +20,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.josue.kodeur.xtremanalyse.application.utils.Constants.*;
+import static com.josue.kodeur.xtremanalyse.application.utils.Constants.BASE_FOLDER;
 
 /**
  * @author JosueKodeur
@@ -37,10 +44,11 @@ public class AccidentServiceImpl implements AccidentService {
     private final UserRepository userRepository;
     private final TypeRouteRepository typeRouteRepository;
     private final ClassificationRouteRepository classificationRouteRepository;
-    private final PersonneImpliqueeRepository personneImpliqueeRepository;
     private final ImageRepository imageRepository;
     private final ImageService imageService;
     private final VilleRepository villeRepository;
+    private final VehiculeRepository vehiculeRepository;
+    private final AssuranceRepository assuranceRepository;
 
     @Override
     public Accident save(Accident accident,
@@ -70,12 +78,27 @@ public class AccidentServiceImpl implements AccidentService {
             }
         }
         accident.setImages(images);
+        var vehicule = new Vehicule();
+        vehicule.setAssurance(assuranceRepository.findByNom("Pieton"));
+        vehicule.setAccident(accident);
+        vehicule.setCreatedAt(LocalDateTime.now());
+        vehicule.setImmatriculation("Pieton");
+        vehiculeRepository.save(vehicule);
         return accident;
     }
 
     @Override
     public void delete(Long ID) throws NotFoundException {
+        Path imageFolder = Paths.get(System.getProperty(SERVER_FOLDER)+BASE_FOLDER).toAbsolutePath().normalize();
         if (ID==null) throw new NotFoundException("Element introuvable");
+        var accident = accidentRepository.findById(ID).orElseThrow();
+        accident.getImages().forEach(image -> {
+            try {
+                Files.deleteIfExists(Paths.get(imageFolder+"/"+ image.getNom()+APPLICATION_NAME +"."+IMAGE_EXTENSION));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         accidentRepository.deleteById(ID);
     }
 
@@ -149,11 +172,5 @@ public class AccidentServiceImpl implements AccidentService {
                 .orElseThrow(()-> new NotFoundException("Element introuvable"));
     }
 
-    @Override
-    public List<PersonneImpliqueeInfo> listPersonnesImpliqueeDansAccident(Long ID) throws NotFoundException{
-        if (ID == null)
-            throw new NotFoundException("Element introuvable");
-        return personneImpliqueeRepository.listPersonnesImpliqueeDansAccident(ID);
-    }
 
 }

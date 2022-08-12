@@ -51,9 +51,7 @@ public class RegionServiceImpl implements RegionService {
 
     @Override
     public void delete(Long ID) throws NotFoundException{
-        if (ID != null)
-            regionRepository.deleteById(ID);
-        throw new NotFoundException(errorMessage);
+        regionRepository.deleteById(ID);
     }
 
     @Override

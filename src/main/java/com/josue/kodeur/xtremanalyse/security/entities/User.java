@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +33,18 @@ public class User implements Serializable {
     @Column(name = "nom", length = 50)
     private String nom;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "prenom", length = 50)
+    private String prenom;
+
+    @Column(name = "email", length = 50)
+    private String email;
+
+    @Column(name = "address", length = 200)
+    private String address;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password", nullable = false)
     private String password;
@@ -48,10 +59,7 @@ public class User implements Serializable {
     private Date joinDate;
 
     @Column(name = "is_active", length = 1, nullable = false)
-    private boolean isActive;
-
-    @Column(name = "is_not_locked", length = 1, nullable = false)
-    private boolean isNotLocked;
+    private Boolean isActive;
 
     @Transient
     private String token;

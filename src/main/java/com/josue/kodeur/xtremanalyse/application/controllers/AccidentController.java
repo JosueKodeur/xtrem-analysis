@@ -1,6 +1,5 @@
 package com.josue.kodeur.xtremanalyse.application.controllers;
 
-import com.josue.kodeur.xtremanalyse.application.dtos.projections.PersonneImpliqueeInfo;
 import com.josue.kodeur.xtremanalyse.application.entities.accidents.Accident;
 import com.josue.kodeur.xtremanalyse.application.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.application.services.accidents.AccidentService;
@@ -154,9 +153,9 @@ public class AccidentController {
         return accidentService.details(id);
     }
 
-    @GetMapping("/list-personnes-impliquee-dans-un-accident/{id}")
-    public List<PersonneImpliqueeInfo> listPersonnesImpliqueeDansAccident(@PathVariable("id") Long id) throws NotFoundException{
-        return accidentService.listPersonnesImpliqueeDansAccident(id);
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Long id) throws NotFoundException{
+        accidentService.delete(id);
     }
 
     @GetMapping("/")

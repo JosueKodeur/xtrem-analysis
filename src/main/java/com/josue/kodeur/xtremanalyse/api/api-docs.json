@@ -1,1 +1,4493 @@
-{"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:8080","description":"Generated server url"}],"paths":{"/api/v1/locations/ville/update/{id}":{"put":{"tags":["lieux-controller"],"operationId":"updateVille","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Ville"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Ville"}}}}}}},"/api/v1/locations/region/update/{id}":{"put":{"tags":["lieux-controller"],"operationId":"updateRegion","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Region"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Region"}}}}}}},"/api/v1/locations/prefecture/update/{id}":{"put":{"tags":["lieux-controller"],"operationId":"updatePrefecture","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Prefecture"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Prefecture"}}}}}}},"/api/v1/accident/update/{id}":{"put":{"tags":["accident-controller"],"operationId":"update","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"multipart/form-data":{"schema":{"required":["accident","files"],"type":"object","properties":{"files":{"type":"array","items":{"type":"string","format":"binary"}},"accident":{"$ref":"#/components/schemas/Accident"}}}}}},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Accident"}}}}}}},"/api/v1/user/register":{"post":{"tags":["user-controller"],"operationId":"register","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/User"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/User"}}}}}}},"/api/v1/user/login":{"post":{"tags":["user-controller"],"operationId":"login","parameters":[{"name":"matricule","in":"query","required":true,"schema":{"type":"string"}},{"name":"password","in":"query","required":true,"schema":{"type":"string"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/User"}}}}}}},"/api/v1/role/add-role":{"post":{"tags":["role-controller"],"operationId":"save","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Role"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Role"}}}}}}},"/api/v1/role/add-role-to-user":{"post":{"tags":["role-controller"],"operationId":"addRoleToUser","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/RoleToUserForm"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK"}}}},"/api/v1/locations/ville/add":{"post":{"tags":["lieux-controller"],"operationId":"addVille","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Ville"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Ville"}}}}}}},"/api/v1/locations/region/add":{"post":{"tags":["lieux-controller"],"operationId":"addRegion","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Region"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Region"}}}}}}},"/api/v1/locations/prefecture/add":{"post":{"tags":["lieux-controller"],"operationId":"addPrefecture","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Prefecture"}}},"required":true},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Prefecture"}}}}}}},"/api/v1/accident/add":{"post":{"tags":["accident-controller"],"operationId":"add","requestBody":{"content":{"multipart/form-data":{"schema":{"required":["accident","files"],"type":"object","properties":{"files":{"type":"array","items":{"type":"string","format":"binary"}},"accident":{"$ref":"#/components/schemas/Accident"}}}}}},"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Accident"}}}}}}},"/api/v1/user/profile":{"get":{"tags":["user-controller"],"operationId":"profile","parameters":[{"name":"matricule","in":"query","required":true,"schema":{"type":"string"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/User"}}}}}}},"/api/v1/user/list-users":{"get":{"tags":["user-controller"],"operationId":"allUsers","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/User"}}}}}}}},"/api/v1/role/list-roles":{"get":{"tags":["role-controller"],"operationId":"listRoles","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Role"}}}}}}}},"/api/v1/locations/ville/":{"get":{"tags":["lieux-controller"],"operationId":"listVille","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Ville"}}}}}}}},"/api/v1/locations/region/prefectures/{id}":{"get":{"tags":["lieux-controller"],"operationId":"prefecturesOfRegion","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/PrefectureDto"}}}}}}}},"/api/v1/locations/region/":{"get":{"tags":["lieux-controller"],"operationId":"listRegions","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Region"}}}}}}}},"/api/v1/locations/prefecture/villes/{id}":{"get":{"tags":["lieux-controller"],"operationId":"villesOfPrefecture","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/VilleDto"}}}}}}}},"/api/v1/locations/prefecture/":{"get":{"tags":["lieux-controller"],"operationId":"listPrefectures","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Prefecture"}}}}}}}},"/api/v1/accident/{id}":{"get":{"tags":["accident-controller"],"operationId":"details","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/Accident"}}}}}}},"/api/v1/accident/list-personnes-impliquee-dans-un-accident/{id}":{"get":{"tags":["accident-controller"],"operationId":"listPersonnesImpliqueeDansAccident","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/PersonneImpliqueeInfo"}}}}}}}},"/api/v1/accident/images/{filename}":{"get":{"tags":["accident-controller"],"operationId":"get","parameters":[{"name":"filename","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"image/jpeg":{"schema":{"type":"array","items":{"type":"string","format":"byte"}}}}}}}},"/api/v1/accident/":{"get":{"tags":["accident-controller"],"operationId":"listAll","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Accident"}}}}}}}},"/api/v1/locations/ville/delete/{id}":{"delete":{"tags":["lieux-controller"],"operationId":"deleteVille","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK"}}}},"/api/v1/locations/region/delete/{id}":{"delete":{"tags":["lieux-controller"],"operationId":"deleteRegion","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK"}}}},"/api/v1/locations/prefecture/delete/{id}":{"delete":{"tags":["lieux-controller"],"operationId":"deletePrefecture","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"401":{"description":"Unauthorized","content":{"*/*":{"schema":{"$ref":"#/components/schemas/HttpResponse"}}}},"200":{"description":"OK"}}}}},"components":{"schemas":{"HttpResponse":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"statusCode":{"type":"integer","format":"int32"},"httpStatus":{"type":"string","enum":["100 CONTINUE","101 SWITCHING_PROTOCOLS","102 PROCESSING","103 CHECKPOINT","200 OK","201 CREATED","202 ACCEPTED","203 NON_AUTHORITATIVE_INFORMATION","204 NO_CONTENT","205 RESET_CONTENT","206 PARTIAL_CONTENT","207 MULTI_STATUS","208 ALREADY_REPORTED","226 IM_USED","300 MULTIPLE_CHOICES","301 MOVED_PERMANENTLY","302 FOUND","302 MOVED_TEMPORARILY","303 SEE_OTHER","304 NOT_MODIFIED","305 USE_PROXY","307 TEMPORARY_REDIRECT","308 PERMANENT_REDIRECT","400 BAD_REQUEST","401 UNAUTHORIZED","402 PAYMENT_REQUIRED","403 FORBIDDEN","404 NOT_FOUND","405 METHOD_NOT_ALLOWED","406 NOT_ACCEPTABLE","407 PROXY_AUTHENTICATION_REQUIRED","408 REQUEST_TIMEOUT","409 CONFLICT","410 GONE","411 LENGTH_REQUIRED","412 PRECONDITION_FAILED","413 PAYLOAD_TOO_LARGE","413 REQUEST_ENTITY_TOO_LARGE","414 URI_TOO_LONG","414 REQUEST_URI_TOO_LONG","415 UNSUPPORTED_MEDIA_TYPE","416 REQUESTED_RANGE_NOT_SATISFIABLE","417 EXPECTATION_FAILED","418 I_AM_A_TEAPOT","419 INSUFFICIENT_SPACE_ON_RESOURCE","420 METHOD_FAILURE","421 DESTINATION_LOCKED","422 UNPROCESSABLE_ENTITY","423 LOCKED","424 FAILED_DEPENDENCY","425 TOO_EARLY","426 UPGRADE_REQUIRED","428 PRECONDITION_REQUIRED","429 TOO_MANY_REQUESTS","431 REQUEST_HEADER_FIELDS_TOO_LARGE","451 UNAVAILABLE_FOR_LEGAL_REASONS","500 INTERNAL_SERVER_ERROR","501 NOT_IMPLEMENTED","502 BAD_GATEWAY","503 SERVICE_UNAVAILABLE","504 GATEWAY_TIMEOUT","505 HTTP_VERSION_NOT_SUPPORTED","506 VARIANT_ALSO_NEGOTIATES","507 INSUFFICIENT_STORAGE","508 LOOP_DETECTED","509 BANDWIDTH_LIMIT_EXCEEDED","510 NOT_EXTENDED","511 NETWORK_AUTHENTICATION_REQUIRED"]},"reason":{"type":"string"},"message":{"type":"string"}}},"Prefecture":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"nombreHabitant":{"type":"integer","format":"int64"},"region":{"$ref":"#/components/schemas/Region"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"Region":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"nombreHabitant":{"type":"integer","format":"int64"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"Ville":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"nombreHabitant":{"type":"integer","format":"int64"},"prefecture":{"$ref":"#/components/schemas/Prefecture"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"Accident":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"dateAccident":{"type":"string","format":"date"},"heure":{"type":"string","format":"date-time"},"zone":{"type":"string"},"quartier":{"type":"string"},"intersectionAccident":{"type":"string"},"pointRepere":{"type":"string"},"latitude":{"type":"number","format":"float"},"longitude":{"type":"number","format":"float"},"route":{"type":"string"},"circonstanceResume":{"type":"string"},"typeJour":{"type":"string"},"codificationCauses":{"type":"string"},"lumiere":{"type":"string"},"profilLieu":{"type":"string"},"conditionAtmospherique":{"type":"string"},"isMarquageSol":{"type":"boolean"},"traceSol":{"type":"string"},"etatChaussee":{"type":"string"},"controleCarrefour":{"type":"string"},"surfaceAtteinte":{"minimum":0,"type":"number","format":"double"},"nombreMorts":{"minimum":0,"type":"integer","format":"int32"},"nombreVehiculesImpliques":{"minimum":0,"type":"integer","format":"int32"},"nombrePanneauxAtteints":{"minimum":0,"type":"integer","format":"int32"},"nombreBalisesAtteintes":{"minimum":0,"type":"integer","format":"int32"},"nombreGlissieresAtteintes":{"minimum":0,"type":"integer","format":"int32"},"nombrePoteauxAtteints":{"minimum":0,"type":"integer","format":"int32"},"nombreGardeFouAtteints":{"minimum":0,"type":"integer","format":"int32"},"nombreOuvrageBetonAtteints":{"minimum":0,"type":"integer","format":"int32"},"autreDegats":{"type":"string"},"carteGriseImageRecto":{"type":"string"},"carteGriseImageVerso":{"type":"string"},"images":{"type":"array","items":{"$ref":"#/components/schemas/Image"}},"ville":{"$ref":"#/components/schemas/Ville"},"typeRoute":{"$ref":"#/components/schemas/TypeRoute"},"classificationRoute":{"$ref":"#/components/schemas/ClassificationRoute"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"ClassificationRoute":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"rue":{"type":"string"},"troncon":{"type":"string"}}},"Image":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"url":{"type":"string"}}},"TypeRoute":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"}}},"Role":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"}}},"User":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"userMatricule":{"type":"string"},"password":{"type":"string","writeOnly":true},"lastLoginDate":{"type":"string","format":"date-time"},"lastLoginDateDisplay":{"type":"string","format":"date-time"},"joinDate":{"type":"string","format":"date-time"},"isActive":{"type":"boolean"},"isNotLocked":{"type":"boolean"},"roles":{"type":"array","items":{"$ref":"#/components/schemas/Role"}}}},"RoleToUserForm":{"type":"object","properties":{"matricule":{"type":"string"},"role":{"type":"string"}}},"PrefectureDto":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"nombreHabitant":{"type":"integer","format":"int64"}}},"VilleDto":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"nombreHabitant":{"type":"integer","format":"int64"}}},"ConducteurInfo":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"typePermis":{"type":"string"},"vehicule":{"$ref":"#/components/schemas/VehiculeInfo"},"nationalite":{"type":"string"},"profession":{"$ref":"#/components/schemas/Profession"},"paysPermis":{"type":"string"},"prenom":{"type":"string"},"protection":{"type":"string"},"lesion":{"type":"string"},"sexe":{"type":"string"},"numeroPermis":{"type":"string"},"anneePermis":{"type":"string"},"age":{"type":"integer","format":"int32"},"nom":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"},"stupefiant":{"type":"boolean"},"alcoolemie":{"type":"boolean"}}},"PassagerInfo":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nationalite":{"type":"string"},"profession":{"$ref":"#/components/schemas/Profession"},"prenom":{"type":"string"},"protection":{"type":"string"},"lesion":{"type":"string"},"sexe":{"type":"string"},"age":{"type":"integer","format":"int32"},"gravite":{"type":"string"},"nom":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"PersonneImpliqueeInfo":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"pieton":{"$ref":"#/components/schemas/PietonInfo"},"passager":{"$ref":"#/components/schemas/PassagerInfo"},"conducteur":{"$ref":"#/components/schemas/ConducteurInfo"}}},"PietonInfo":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nationalite":{"type":"string"},"profession":{"$ref":"#/components/schemas/Profession"},"prenom":{"type":"string"},"protection":{"type":"string"},"lesion":{"type":"string"},"sexe":{"type":"string"},"age":{"type":"integer","format":"int32"},"gravite":{"type":"string"},"nom":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"Profession":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"nom":{"type":"string"},"description":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"}}},"VehiculeInfo":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"debutCirculation":{"type":"string"},"societeAssurance":{"type":"string"},"volumeChargement":{"type":"string"},"paysImmatriculation":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updateAt":{"type":"string","format":"date-time"},"etatFeux":{"type":"string"},"typeChargement":{"type":"string"},"etatGeneral":{"type":"string"},"etatPneus":{"type":"string"},"genre":{"type":"string"},"immatriculation":{"type":"string"},"isAssuranceValid":{"type":"boolean"},"isPremierChoc":{"type":"boolean"},"isControleTechValid":{"type":"boolean"}}}}}}
+{
+  "openapi": "3.0.1" ,
+  "info": {
+    "title": "OpenAPI definition, Xtrem-Analyse" ,
+    "version": "v0"
+  } ,
+  "servers": [
+    {
+      "url": "http://localhost:9000" ,
+      "description": "Generated server url"
+    }
+  ] ,
+  "paths": {
+    "/api/v1/ville/update/{id}": {
+      "put": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "updateVille" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ville"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ville"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/vehicule/update/{id}/{assuranceId}": {
+      "put": {
+        "tags": [
+          "vehicule-controller"
+        ] ,
+        "operationId": "update" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "assuranceId" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicule"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicule"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/update": {
+      "put": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "updateUser" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddForm"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/delete-role": {
+      "put": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "deleteRole" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRoleForm"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/type-personne/update/{id}": {
+      "put": {
+        "tags": [
+          "type-personne-controller"
+        ] ,
+        "operationId": "update_1" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TypePersonne"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TypePersonne"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/update/{id}": {
+      "put": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "updateRegion" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/profession/update/{id}": {
+      "put": {
+        "tags": [
+          "profession-controller"
+        ] ,
+        "operationId": "update_2" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profession"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profession"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefectures/update/{id}": {
+      "put": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "updatePrefecture" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prefecture"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prefecture"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/personne-impliquee/update/{typePersonne}/{professionId}/{immatriculation}/{accidentId}": {
+      "put": {
+        "tags": [
+          "personne-impliquee-controller"
+        ] ,
+        "operationId": "update_3" ,
+        "parameters": [
+          {
+            "name": "typePersonne" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "professionId" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "immatriculation" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "accidentId" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonneImpliquee"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonneImpliquee"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/assurance/update": {
+      "put": {
+        "tags": [
+          "assurance-controller"
+        ] ,
+        "operationId": "update_4" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Assurance"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assurance"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/accident/update/{id}": {
+      "put": {
+        "tags": [
+          "accident-controller"
+        ] ,
+        "operationId": "update_5" ,
+        "parameters": [
+          {
+            "name": "heure" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "zone" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "quartier" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "intersectionAccident" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "pointRepere" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "latitude" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "number" ,
+              "format": "float"
+            }
+          } ,
+          {
+            "name": "longitude" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "number" ,
+              "format": "float"
+            }
+          } ,
+          {
+            "name": "route" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "troncon" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "circonstance_resume" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "type_jour" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "codification_causes" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "lumiere" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "profil_lieu" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "condition_atmospherique" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "is_marquage_sol" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "trace_sol" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "etat_chaussee" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "controle_carrefour" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "surface_atteinte" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "number" ,
+              "format": "double"
+            }
+          } ,
+          {
+            "name": "nombre_morts" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_vehicules_impliques" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_panneaux_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_balises_atteintes" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_glissieres_atteintes" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_poteaux_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_garde_fou_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_ouvrage_beton_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "autre_degats" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "villeId" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "classificationRouteId" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "typeRouteId" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "userMatricule" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "images"
+                ] ,
+                "type": "object" ,
+                "properties": {
+                  "images": {
+                    "type": "array" ,
+                    "items": {
+                      "type": "string" ,
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accident"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/add": {
+      "post": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "addVille" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ville"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ville"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/vehicule/add/{id}/{assuranceId}": {
+      "post": {
+        "tags": [
+          "vehicule-controller"
+        ] ,
+        "operationId": "add" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "assuranceId" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Vehicule"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicule"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/register": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "register" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddForm"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/login": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "login" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginForm"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/add": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "add_1" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddForm"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/type-personne/add": {
+      "post": {
+        "tags": [
+          "type-personne-controller"
+        ] ,
+        "operationId": "add_2" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TypePersonne"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TypePersonne"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/add": {
+      "post": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "addRegion" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Region"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/profession/add": {
+      "post": {
+        "tags": [
+          "profession-controller"
+        ] ,
+        "operationId": "add_3" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Profession"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profession"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefectures/add": {
+      "post": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "addPrefecture" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prefecture"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prefecture"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/personne-impliquee/add/{typePersonne}/{professionId}/{immatriculation}/{accidentId}": {
+      "post": {
+        "tags": [
+          "personne-impliquee-controller"
+        ] ,
+        "operationId": "add_4" ,
+        "parameters": [
+          {
+            "name": "typePersonne" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "professionId" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "immatriculation" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "accidentId" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonneImpliquee"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonneImpliquee"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/assurance/add": {
+      "post": {
+        "tags": [
+          "assurance-controller"
+        ] ,
+        "operationId": "add_5" ,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Assurance"
+              }
+            }
+          } ,
+          "required": true
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assurance"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/accident/add": {
+      "post": {
+        "tags": [
+          "accident-controller"
+        ] ,
+        "operationId": "add_6" ,
+        "parameters": [
+          {
+            "name": "heure" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "zone" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "quartier" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "intersectionAccident" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "pointRepere" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "latitude" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "number" ,
+              "format": "float"
+            }
+          } ,
+          {
+            "name": "longitude" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "number" ,
+              "format": "float"
+            }
+          } ,
+          {
+            "name": "route" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "troncon" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "circonstance_resume" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "type_jour" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "codification_causes" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "lumiere" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "profil_lieu" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "condition_atmospherique" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "is_marquage_sol" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "trace_sol" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "etat_chaussee" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "controle_carrefour" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "surface_atteinte" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "number" ,
+              "format": "double"
+            }
+          } ,
+          {
+            "name": "nombre_morts" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_vehicules_impliques" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_panneaux_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_balises_atteintes" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_glissieres_atteintes" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_poteaux_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_garde_fou_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "nombre_ouvrage_beton_atteints" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int32"
+            }
+          } ,
+          {
+            "name": "autre_degats" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "villeId" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "classificationRouteId" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "typeRouteId" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          } ,
+          {
+            "name": "userMatricule" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ] ,
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "images"
+                ] ,
+                "type": "object" ,
+                "properties": {
+                  "images": {
+                    "type": "array" ,
+                    "items": {
+                      "type": "string" ,
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accident"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/": {
+      "get": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "listVille" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Ville"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/vehicule/list/": {
+      "get": {
+        "tags": [
+          "vehicule-controller"
+        ] ,
+        "operationId": "list" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Vehicule"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/vehicule/all-by-accident/{id}": {
+      "get": {
+        "tags": [
+          "vehicule-controller"
+        ] ,
+        "operationId": "vehiculeList" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Vehicule"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/search/{matricule}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "search" ,
+        "parameters": [
+          {
+            "name": "matricule" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/list-users": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "allUsers" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/find/{matricule}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "profile" ,
+        "parameters": [
+          {
+            "name": "matricule" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/type-route/": {
+      "get": {
+        "tags": [
+          "type-route-controller"
+        ] ,
+        "operationId": "listAll" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/TypeRoute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/type-personne/": {
+      "get": {
+        "tags": [
+          "type-personne-controller"
+        ] ,
+        "operationId": "listAll_1" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/TypePersonne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/role/": {
+      "get": {
+        "tags": [
+          "role-controller"
+        ] ,
+        "operationId": "roleList" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Role"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/userList/": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "userList" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string" ,
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/evolutivite-par-mort-annee": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "evolutiviteParMortAnnee" ,
+        "parameters": [
+          {
+            "name": "annee" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "array" ,
+              "items": {
+                "type": "integer" ,
+                "format": "int32"
+              }
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object" ,
+                  "additionalProperties": {
+                    "type": "integer" ,
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/evolutivite-par-annee": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "evolutiviteParAnnee" ,
+        "parameters": [
+          {
+            "name": "annee" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "array" ,
+              "items": {
+                "type": "integer" ,
+                "format": "int32"
+              }
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object" ,
+                  "additionalProperties": {
+                    "type": "integer" ,
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/accidents-par-zone": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "accidentParZone" ,
+        "parameters": [
+          {
+            "name": "zone" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "array" ,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object" ,
+                  "additionalProperties": {
+                    "type": "integer" ,
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/accidents-par-type-route": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "accidentParTypeRoute" ,
+        "parameters": [
+          {
+            "name": "annees" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "array" ,
+              "items": {
+                "type": "integer" ,
+                "format": "int32"
+              }
+            }
+          } ,
+          {
+            "name": "id" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object" ,
+                  "additionalProperties": {
+                    "type": "integer" ,
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/accidents-impliquant-blesse-par-annee": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "accidentImpliquantBlesse" ,
+        "parameters": [
+          {
+            "name": "annee" ,
+            "in": "query" ,
+            "required": true ,
+            "schema": {
+              "type": "array" ,
+              "items": {
+                "type": "integer" ,
+                "format": "int32"
+              }
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object" ,
+                  "additionalProperties": {
+                    "type": "integer" ,
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/reports/accident/{condition}": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ] ,
+        "operationId": "generateReport" ,
+        "parameters": [
+          {
+            "name": "condition" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "type": "string" ,
+                    "format": "byte"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/prefectures/{id}": {
+      "get": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "prefecturesOfRegion" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/PrefectureDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/": {
+      "get": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "listRegions" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/profession/": {
+      "get": {
+        "tags": [
+          "profession-controller"
+        ] ,
+        "operationId": "listAll_2" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Profession"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefectures/villes/{id}": {
+      "get": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "villesOfPrefecture" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/VilleDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefectures/": {
+      "get": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "listPrefectures" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Prefecture"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/personne-impliquee/personne-dans-vehicule/{id}/{id2}": {
+      "get": {
+        "tags": [
+          "personne-impliquee-controller"
+        ] ,
+        "operationId": "personneImpliqueeListByAccident" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          } ,
+          {
+            "name": "id2" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/PersonneImpliquee"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/personne-impliquee/personne-dans-accident/{id}": {
+      "get": {
+        "tags": [
+          "personne-impliquee-controller"
+        ] ,
+        "operationId": "personneImpliqueeList" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/PersonneImpliquee"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/classification-route/": {
+      "get": {
+        "tags": [
+          "classification-route-controller"
+        ] ,
+        "operationId": "listAll_3" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/ClassificationRoute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/assurance": {
+      "get": {
+        "tags": [
+          "assurance-controller"
+        ] ,
+        "operationId": "assuranceList" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Assurance"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/assurance/{id}": {
+      "get": {
+        "tags": [
+          "assurance-controller"
+        ] ,
+        "operationId": "details" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assurance"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/accident/{id}": {
+      "get": {
+        "tags": [
+          "accident-controller"
+        ] ,
+        "operationId": "details_1" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accident"
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/accident/images/{filename}": {
+      "get": {
+        "tags": [
+          "accident-controller"
+        ] ,
+        "operationId": "get" ,
+        "parameters": [
+          {
+            "name": "filename" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "type": "string" ,
+                    "format": "byte"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/accident/": {
+      "get": {
+        "tags": [
+          "accident-controller"
+        ] ,
+        "operationId": "listAll_4" ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array" ,
+                  "items": {
+                    "$ref": "#/components/schemas/Accident"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } ,
+    "/api/v1/ville/delete/{id}": {
+      "delete": {
+        "tags": [
+          "ville-controller"
+        ] ,
+        "operationId": "deleteVille" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/vehicule/delete/{id}": {
+      "delete": {
+        "tags": [
+          "vehicule-controller"
+        ] ,
+        "operationId": "delete" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/user/delete/{id}": {
+      "delete": {
+        "tags": [
+          "user-controller"
+        ] ,
+        "operationId": "deleteUser" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/type-personne/delete/{id}": {
+      "delete": {
+        "tags": [
+          "type-personne-controller"
+        ] ,
+        "operationId": "delete_1" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/region/delete/{id}": {
+      "delete": {
+        "tags": [
+          "region-controller"
+        ] ,
+        "operationId": "deleteRegion" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/profession/delete/{id}": {
+      "delete": {
+        "tags": [
+          "profession-controller"
+        ] ,
+        "operationId": "delete_2" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/prefectures/delete/{id}": {
+      "delete": {
+        "tags": [
+          "prefecture-controller"
+        ] ,
+        "operationId": "deletePrefecture" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/personne-impliquee/delete/{id}": {
+      "delete": {
+        "tags": [
+          "personne-impliquee-controller"
+        ] ,
+        "operationId": "delete_3" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/assurance/delete/{id}": {
+      "delete": {
+        "tags": [
+          "assurance-controller"
+        ] ,
+        "operationId": "delete_4" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    } ,
+    "/api/v1/accident/delete/{id}": {
+      "delete": {
+        "tags": [
+          "accident-controller"
+        ] ,
+        "operationId": "delete_5" ,
+        "parameters": [
+          {
+            "name": "id" ,
+            "in": "path" ,
+            "required": true ,
+            "schema": {
+              "type": "integer" ,
+              "format": "int64"
+            }
+          }
+        ] ,
+        "responses": {
+          "400": {
+            "description": "Bad Request" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "401": {
+            "description": "Unauthorized" ,
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpResponse"
+                }
+              }
+            }
+          } ,
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  } ,
+  "components": {
+    "schemas": {
+      "HttpResponse": {
+        "type": "object" ,
+        "properties": {
+          "timestamp": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "statusCode": {
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "httpStatus": {
+            "type": "string" ,
+            "enum": [
+              "100 CONTINUE" ,
+              "101 SWITCHING_PROTOCOLS" ,
+              "102 PROCESSING" ,
+              "103 CHECKPOINT" ,
+              "200 OK" ,
+              "201 CREATED" ,
+              "202 ACCEPTED" ,
+              "203 NON_AUTHORITATIVE_INFORMATION" ,
+              "204 NO_CONTENT" ,
+              "205 RESET_CONTENT" ,
+              "206 PARTIAL_CONTENT" ,
+              "207 MULTI_STATUS" ,
+              "208 ALREADY_REPORTED" ,
+              "226 IM_USED" ,
+              "300 MULTIPLE_CHOICES" ,
+              "301 MOVED_PERMANENTLY" ,
+              "302 FOUND" ,
+              "302 MOVED_TEMPORARILY" ,
+              "303 SEE_OTHER" ,
+              "304 NOT_MODIFIED" ,
+              "305 USE_PROXY" ,
+              "307 TEMPORARY_REDIRECT" ,
+              "308 PERMANENT_REDIRECT" ,
+              "400 BAD_REQUEST" ,
+              "401 UNAUTHORIZED" ,
+              "402 PAYMENT_REQUIRED" ,
+              "403 FORBIDDEN" ,
+              "404 NOT_FOUND" ,
+              "405 METHOD_NOT_ALLOWED" ,
+              "406 NOT_ACCEPTABLE" ,
+              "407 PROXY_AUTHENTICATION_REQUIRED" ,
+              "408 REQUEST_TIMEOUT" ,
+              "409 CONFLICT" ,
+              "410 GONE" ,
+              "411 LENGTH_REQUIRED" ,
+              "412 PRECONDITION_FAILED" ,
+              "413 PAYLOAD_TOO_LARGE" ,
+              "413 REQUEST_ENTITY_TOO_LARGE" ,
+              "414 URI_TOO_LONG" ,
+              "414 REQUEST_URI_TOO_LONG" ,
+              "415 UNSUPPORTED_MEDIA_TYPE" ,
+              "416 REQUESTED_RANGE_NOT_SATISFIABLE" ,
+              "417 EXPECTATION_FAILED" ,
+              "418 I_AM_A_TEAPOT" ,
+              "419 INSUFFICIENT_SPACE_ON_RESOURCE" ,
+              "420 METHOD_FAILURE" ,
+              "421 DESTINATION_LOCKED" ,
+              "422 UNPROCESSABLE_ENTITY" ,
+              "423 LOCKED" ,
+              "424 FAILED_DEPENDENCY" ,
+              "425 TOO_EARLY" ,
+              "426 UPGRADE_REQUIRED" ,
+              "428 PRECONDITION_REQUIRED" ,
+              "429 TOO_MANY_REQUESTS" ,
+              "431 REQUEST_HEADER_FIELDS_TOO_LARGE" ,
+              "451 UNAVAILABLE_FOR_LEGAL_REASONS" ,
+              "500 INTERNAL_SERVER_ERROR" ,
+              "501 NOT_IMPLEMENTED" ,
+              "502 BAD_GATEWAY" ,
+              "503 SERVICE_UNAVAILABLE" ,
+              "504 GATEWAY_TIMEOUT" ,
+              "505 HTTP_VERSION_NOT_SUPPORTED" ,
+              "506 VARIANT_ALSO_NEGOTIATES" ,
+              "507 INSUFFICIENT_STORAGE" ,
+              "508 LOOP_DETECTED" ,
+              "509 BANDWIDTH_LIMIT_EXCEEDED" ,
+              "510 NOT_EXTENDED" ,
+              "511 NETWORK_AUTHENTICATION_REQUIRED"
+            ]
+          } ,
+          "reason": {
+            "type": "string"
+          } ,
+          "message": {
+            "type": "string"
+          }
+        }
+      } ,
+      "Prefecture": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "region": {
+            "$ref": "#/components/schemas/Region"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Region": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Ville": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "prefecture": {
+            "$ref": "#/components/schemas/Prefecture"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Accident": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "dateAccident": {
+            "type": "string" ,
+            "format": "date"
+          } ,
+          "heure": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "zone": {
+            "type": "string"
+          } ,
+          "quartier": {
+            "type": "string"
+          } ,
+          "intersectionAccident": {
+            "type": "string"
+          } ,
+          "pointRepere": {
+            "type": "string"
+          } ,
+          "latitude": {
+            "type": "number" ,
+            "format": "float"
+          } ,
+          "longitude": {
+            "type": "number" ,
+            "format": "float"
+          } ,
+          "route": {
+            "type": "string"
+          } ,
+          "troncon": {
+            "type": "string"
+          } ,
+          "circonstanceResume": {
+            "type": "string"
+          } ,
+          "typeJour": {
+            "type": "string"
+          } ,
+          "codificationCauses": {
+            "type": "string"
+          } ,
+          "lumiere": {
+            "type": "string"
+          } ,
+          "profilLieu": {
+            "type": "string"
+          } ,
+          "conditionAtmospherique": {
+            "type": "string"
+          } ,
+          "isMarquageSol": {
+            "type": "boolean"
+          } ,
+          "traceSol": {
+            "type": "string"
+          } ,
+          "etatChaussee": {
+            "type": "string"
+          } ,
+          "controleCarrefour": {
+            "type": "string"
+          } ,
+          "surfaceAtteinte": {
+            "minimum": 0 ,
+            "type": "number" ,
+            "format": "double"
+          } ,
+          "nombreMorts": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombreVehiculesImpliques": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombrePanneauxAtteints": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombreBalisesAtteintes": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombreGlissieresAtteintes": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombrePoteauxAtteints": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombreGardeFouAtteints": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "nombreOuvrageBetonAtteints": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "autreDegats": {
+            "type": "string"
+          } ,
+          "images": {
+            "type": "array" ,
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          } ,
+          "ville": {
+            "$ref": "#/components/schemas/Ville"
+          } ,
+          "typeRoute": {
+            "$ref": "#/components/schemas/TypeRoute"
+          } ,
+          "classificationRoute": {
+            "$ref": "#/components/schemas/ClassificationRoute"
+          } ,
+          "user": {
+            "$ref": "#/components/schemas/User"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Assurance": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          }
+        }
+      } ,
+      "ClassificationRoute": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          }
+        }
+      } ,
+      "Image": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "url": {
+            "type": "string"
+          }
+        }
+      } ,
+      "Role": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          }
+        }
+      } ,
+      "TypeRoute": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          }
+        }
+      } ,
+      "User": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "userMatricule": {
+            "type": "string"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "password": {
+            "type": "string" ,
+            "writeOnly": true
+          } ,
+          "lastLoginDate": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "lastLoginDateDisplay": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "joinDate": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "isActive": {
+            "type": "boolean"
+          } ,
+          "isNotLocked": {
+            "type": "boolean"
+          } ,
+          "token": {
+            "type": "string"
+          } ,
+          "roles": {
+            "type": "array" ,
+            "items": {
+              "$ref": "#/components/schemas/Role"
+            }
+          } ,
+          "tokenValid": {
+            "type": "boolean"
+          }
+        }
+      } ,
+      "Vehicule": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "immatriculation": {
+            "type": "string"
+          } ,
+          "paysImmatriculation": {
+            "type": "string"
+          } ,
+          "genre": {
+            "type": "string"
+          } ,
+          "isPremierChoc": {
+            "type": "boolean"
+          } ,
+          "debutCirculation": {
+            "type": "string"
+          } ,
+          "isControleTechValid": {
+            "type": "boolean"
+          } ,
+          "isAssuranceValid": {
+            "type": "boolean"
+          } ,
+          "etatGeneral": {
+            "type": "string"
+          } ,
+          "etatPneus": {
+            "type": "string"
+          } ,
+          "etatFeux": {
+            "type": "string"
+          } ,
+          "typeChargement": {
+            "type": "string"
+          } ,
+          "volumeChargement": {
+            "type": "string"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "accident": {
+            "$ref": "#/components/schemas/Accident"
+          } ,
+          "assurance": {
+            "$ref": "#/components/schemas/Assurance"
+          }
+        }
+      } ,
+      "AddForm": {
+        "type": "object" ,
+        "properties": {
+          "matricule": {
+            "type": "string"
+          } ,
+          "newMatricule": {
+            "type": "string"
+          } ,
+          "password": {
+            "type": "string"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "isActive": {
+            "type": "string"
+          } ,
+          "isNotLocked": {
+            "type": "string"
+          } ,
+          "role": {
+            "type": "string"
+          }
+        }
+      } ,
+      "DeleteRoleForm": {
+        "type": "object" ,
+        "properties": {
+          "matricule": {
+            "type": "string"
+          } ,
+          "roles": {
+            "type": "array" ,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      } ,
+      "TypePersonne": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "Profession": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "description": {
+            "type": "string"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          }
+        }
+      } ,
+      "PersonneImpliquee": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "cni": {
+            "type": "string"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "prenom": {
+            "type": "string"
+          } ,
+          "age": {
+            "minimum": 0 ,
+            "type": "integer" ,
+            "format": "int32"
+          } ,
+          "sexe": {
+            "type": "string"
+          } ,
+          "nationalite": {
+            "type": "string"
+          } ,
+          "lesion": {
+            "type": "string"
+          } ,
+          "protection": {
+            "type": "string"
+          } ,
+          "gravite": {
+            "type": "string"
+          } ,
+          "alcoolemie": {
+            "type": "boolean"
+          } ,
+          "stupefiant": {
+            "type": "boolean"
+          } ,
+          "typePermis": {
+            "type": "string"
+          } ,
+          "numeroPermis": {
+            "type": "string"
+          } ,
+          "anneePermis": {
+            "type": "string"
+          } ,
+          "paysPermis": {
+            "type": "string"
+          } ,
+          "createdAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "updateAt": {
+            "type": "string" ,
+            "format": "date-time"
+          } ,
+          "profession": {
+            "$ref": "#/components/schemas/Profession"
+          } ,
+          "typePersonne": {
+            "$ref": "#/components/schemas/TypePersonne"
+          } ,
+          "vehicule": {
+            "$ref": "#/components/schemas/Vehicule"
+          }
+        }
+      } ,
+      "LoginForm": {
+        "type": "object" ,
+        "properties": {
+          "matricule": {
+            "type": "string"
+          } ,
+          "password": {
+            "type": "string"
+          }
+        }
+      } ,
+      "PrefectureDto": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          }
+        }
+      } ,
+      "VilleDto": {
+        "type": "object" ,
+        "properties": {
+          "id": {
+            "type": "integer" ,
+            "format": "int64"
+          } ,
+          "nom": {
+            "type": "string"
+          } ,
+          "nombreHabitant": {
+            "type": "integer" ,
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,14 +2,12 @@ package com.josue.kodeur.xtremanalyse.security.controller;
 
 import com.josue.kodeur.xtremanalyse.application.exceptions.NotFoundException;
 import com.josue.kodeur.xtremanalyse.security.config.JwtTokenProvider;
-import com.josue.kodeur.xtremanalyse.security.dtos.AddForm;
-import com.josue.kodeur.xtremanalyse.security.dtos.DeleteRoleForm;
-import com.josue.kodeur.xtremanalyse.security.dtos.LoginForm;
-import com.josue.kodeur.xtremanalyse.security.dtos.RegisterForm;
+import com.josue.kodeur.xtremanalyse.security.dtos.*;
 import com.josue.kodeur.xtremanalyse.security.entities.User;
 import com.josue.kodeur.xtremanalyse.security.entities.UserPrincipal;
 import com.josue.kodeur.xtremanalyse.security.exceptions.ExceptionHandling;
 import com.josue.kodeur.xtremanalyse.security.exceptions.MatriculeExistException;
+import com.josue.kodeur.xtremanalyse.security.services.OTPService;
 import com.josue.kodeur.xtremanalyse.security.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -39,8 +37,10 @@ public class UserController extends ExceptionHandling {
     private final UserService userService;
     AuthenticationManager authenticationManager;
     JwtTokenProvider jwtTokenProvider;
+    private OTPService otpService;
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN')")
     public User add(@RequestBody AddForm addForm
 
                     ) throws UsernameNotFoundException, MatriculeExistException {
@@ -48,13 +48,19 @@ public class UserController extends ExceptionHandling {
                 addForm.getPassword(),
                 addForm.getNom(),
                 Boolean.parseBoolean(addForm.getIsActive()),
-                Boolean.parseBoolean(addForm.getIsNotLocked()),
                 addForm.getRole());
     }
 
     @PostMapping("/register")
     public User register(@RequestBody AddForm addForm) throws UsernameNotFoundException, MatriculeExistException {
-        return userService.register(addForm.getMatricule(), addForm.getPassword(), addForm.getNom());
+        return userService.register(addForm.getMatricule(),
+                addForm.getNom(),
+                addForm.getPassword(),
+                addForm.getEmail(),
+                addForm.getPhoneNumber(),
+                addForm.getAddress(),
+                addForm.getPassword()
+        );
     }
 
     @PostMapping("/login")
@@ -70,7 +76,7 @@ public class UserController extends ExceptionHandling {
     //Eny song
 
     @GetMapping("/list-users")
-    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN')")
     public ResponseEntity<List<User>> allUsers(){
         return new ResponseEntity<>(userService.userList(), OK);
     }
@@ -78,10 +84,31 @@ public class UserController extends ExceptionHandling {
     @PutMapping("/update")
     @PreAuthorize("hasAnyAuthority('SUPER_ADMIN')")
     public ResponseEntity<User> updateUser(@RequestBody AddForm addForm) throws MatriculeExistException {
-        return new ResponseEntity<>(userService.update(addForm.getMatricule(),
-                addForm.getPassword(), addForm.getNom(),
-                Boolean.parseBoolean(addForm.getIsActive()), Boolean.parseBoolean(addForm.getIsNotLocked()),
+        return new ResponseEntity<>(userService.update(
+                addForm.getMatricule(),
+                addForm.getNom(),
+                addForm.getPrenom(),
+                addForm.getPhoneNumber(),
+                addForm.getEmail(),
+                addForm.getAddress(),
+                Boolean.parseBoolean(addForm.getIsActive()),
                 addForm.getRole(), addForm.getNewMatricule()) , OK);
+    }
+
+    @PutMapping("/update-profile")
+    public ResponseEntity<User> updateProfile(@RequestBody AddForm addForm) throws MatriculeExistException {
+        return new ResponseEntity<>(userService.updateProfile(addForm.getMatricule(),
+                addForm.getNom(),
+                addForm.getPrenom(),
+                addForm.getPhoneNumber(),
+                addForm.getEmail(),
+                addForm.getAddress(),
+                addForm.getNewMatricule()) , OK);
+    }
+
+    @PutMapping("/password-change")
+    public void changePassword(@RequestBody LoginForm form) throws MatriculeExistException {
+         userService.changePassword(form.getMatricule(), form.getPassword());
     }
 
     @PutMapping("/delete-role")
@@ -110,6 +137,10 @@ public class UserController extends ExceptionHandling {
         userService.deleteUser(id);
     }
 
+    @PostMapping("/reset")
+    public PasswordResetResponse resetPassword(@RequestParam String username){
+        return otpService.sendOTPPasswordReset(username);
+    }
 
     private void authenticate(String matricule, String password) {
         authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(matricule, password));

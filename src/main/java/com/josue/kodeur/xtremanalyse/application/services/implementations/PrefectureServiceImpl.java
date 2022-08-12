@@ -52,7 +52,6 @@ public class PrefectureServiceImpl implements PrefectureService {
                         .getId())
                 .orElseThrow(() ->new  NotFoundException("Region Introuvable")));
         currentPrefecture.setNom(prefecture.getNom());
-        currentPrefecture.setNombreHabitant(prefecture.getNombreHabitant());
         currentPrefecture.setUpdateAt(LocalDateTime.now());
         return currentPrefecture;
     }

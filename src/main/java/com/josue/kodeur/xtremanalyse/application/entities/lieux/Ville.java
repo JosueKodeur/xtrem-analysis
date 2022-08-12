@@ -23,9 +23,6 @@ public class Ville {
 
     private String nom;
 
-    @Column(nullable = false)
-    private Long nombreHabitant;
-
     @ManyToOne
     @JoinColumn(name = "prefecture_id")
     private Prefecture prefecture;

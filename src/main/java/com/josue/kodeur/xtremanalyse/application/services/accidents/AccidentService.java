@@ -19,5 +19,4 @@ public interface AccidentService {
     Accident update(Long ID, Accident accident, String userMatricule, Long classificationRouteId, Long typeRouteId, Long villeId,  List<MultipartFile> images) throws NotFoundException, IOException;
     List<Accident> listAll();
     Accident details(Long ID) throws NotFoundException;
-    List<PersonneImpliqueeInfo> listPersonnesImpliqueeDansAccident(Long ID) throws NotFoundException;
 }

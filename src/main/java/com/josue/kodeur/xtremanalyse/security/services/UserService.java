@@ -14,21 +14,48 @@ import java.util.List;
 
 public interface UserService {
 
-    User addNewUser(String matricule, String password, String nom, boolean isActive, boolean isNotLocked, String role) throws MatriculeExistException;
+    User addNewUser(String matricule
+            , String password,
+                    String nom,
+                    boolean isActive, String role) throws MatriculeExistException;
 
     User loadUserByMatricule(String matricule) throws UsernameNotFoundException;
+
     User userDetails(String matricule) throws NotFoundException;
+
     User update(String matricule,
-     String password,
-     String nom,
-     Boolean isActive,
-     Boolean isNotLocked,
-     String role,
-     String newMatricule) throws UsernameNotFoundException, MatriculeExistException;
-    User register(String matricule, String nom, String password) throws MatriculeExistException;
+                String nom,
+                String prenom,
+                String phoneNumber,
+                String email,
+                String address,
+                Boolean isActive,
+                String role,
+                String newMatricule) throws UsernameNotFoundException, MatriculeExistException;
+
+    User updateProfile(String matricule,
+                String nom,
+                String prenom,
+                String phoneNumber,
+                String email,
+                String address,
+                String newMatricule) throws UsernameNotFoundException, MatriculeExistException;
+
+    User register(String matricule,
+                  String nom,
+                  String prenom,
+                  String email,
+                  String phoneNumber,
+                  String address,
+                  String password) throws MatriculeExistException;
+
     void deleteUser(long id);
-    void resetPassword(String email);
-    List<User> userList();
+
+    void changePassword(String matricule, String password);
+
+    List<User> userList( );
+
     List<User> searchUser(String matricule);
+
     void deleteRole(List<String> roles, String matricule);
 }

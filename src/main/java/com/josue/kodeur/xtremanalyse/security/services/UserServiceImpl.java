@@ -1,11 +1,16 @@
 package com.josue.kodeur.xtremanalyse.security.services;
 
 import com.josue.kodeur.xtremanalyse.application.exceptions.NotFoundException;
+import com.josue.kodeur.xtremanalyse.security.config.TwilioConfig;
+import com.josue.kodeur.xtremanalyse.security.dtos.OTPStatus;
+import com.josue.kodeur.xtremanalyse.security.dtos.PasswordResetResponse;
 import com.josue.kodeur.xtremanalyse.security.entities.Role;
 import com.josue.kodeur.xtremanalyse.security.entities.User;
 import com.josue.kodeur.xtremanalyse.security.exceptions.MatriculeExistException;
 import com.josue.kodeur.xtremanalyse.security.repositories.RoleRepository;
 import com.josue.kodeur.xtremanalyse.security.repositories.UserRepository;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -31,10 +36,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private final OTPService otpService;
+    private final TwilioConfig twilioConfig;
 
 
     @Override
-    public User addNewUser(String matricule, String password, String nom, boolean isActive, boolean isNotLocked, String roleName) throws MatriculeExistException {
+    public User addNewUser(String matricule, String password, String nom, boolean isActive, String roleName) throws MatriculeExistException {
         User currentUser = userRepository.findByUserMatricule(matricule);
         Role role = roleRepository.findByNom(roleName);
         if (currentUser != null)
@@ -43,8 +50,7 @@ public class UserServiceImpl implements UserService {
         user.setNom(nom);
         user.setUserMatricule(matricule);
         user.setPassword(passwordEncoder.encode(password));
-        user.setActive(isActive);
-        user.setNotLocked(isNotLocked);
+        user.setIsActive(isActive);
         user.getRoles().add(role);
         user.setJoinDate(new Date());
 
@@ -81,10 +87,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(String matricule,
-                       String password,
                        String nom,
+                       String prenom,
+                       String phoneNumber,
+                       String email,
+                       String address,
                        Boolean isActive,
-                       Boolean isNotLocked,
                        String roleName,
                        String newMatricule) throws UsernameNotFoundException, MatriculeExistException {
         User newUser = userRepository.findByUserMatricule(newMatricule);
@@ -97,33 +105,75 @@ public class UserServiceImpl implements UserService {
             if (newUser != null && !currentUser.getId().equals(newUser.getId())) {
                 throw new MatriculeExistException("");
             }
+            currentUser.setNom(nom);
+            currentUser.setPrenom(prenom);
+            currentUser.setAddress(address);
+            currentUser.setEmail(email);
+            currentUser.setPhoneNumber(phoneNumber);
+            currentUser.setUserMatricule(newMatricule);
+            currentUser.setIsActive(isActive);
             if (!currentUser.getRoles().contains(role)) {
                 currentUser.getRoles().add(role);
-                currentUser.setNom(nom);
-                currentUser.setUserMatricule(newMatricule);
-                currentUser.setPassword(passwordEncoder.encode(password));
-                currentUser.setActive(isActive);
-                currentUser.setNotLocked(isNotLocked);
-                return currentUser;
             }
+
+            if (isActive==true){
+                PhoneNumber receiver = new PhoneNumber(currentUser.getPhoneNumber());
+                PhoneNumber sender = new PhoneNumber(twilioConfig.getTrialNumber());
+                String optMessage = "\nCher utilisateur, votre compte Xtrem-analyse a été activé par l'administration.";
+                Message.creator(receiver, sender, optMessage).create();
+
+            }
+            return currentUser;
         }
 
         return null;
     }
 
     @Override
-    public User register(String matricule, String password, String nom) throws MatriculeExistException {
+    public User updateProfile(String matricule, String nom, String prenom, String phoneNumber, String email, String address, String newMatricule) throws UsernameNotFoundException, MatriculeExistException {
+        User newUser = userRepository.findByUserMatricule(newMatricule);
+        if (StringUtils.isNotBlank(matricule)) {
+            User currentUser = userRepository.findByUserMatricule(matricule);
+            if (currentUser == null) {
+                throw new UsernameNotFoundException("");
+            }
+            if (newUser != null && !currentUser.getId().equals(newUser.getId())) {
+                throw new MatriculeExistException("");
+            }
+            currentUser.setNom(nom);
+            currentUser.setPrenom(prenom);
+            currentUser.setAddress(address);
+            currentUser.setEmail(email);
+            currentUser.setPhoneNumber(phoneNumber);
+            currentUser.setUserMatricule(newMatricule);
+            return currentUser;
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public User register(String matricule,
+                         String nom,
+                         String prenom,
+                         String email,
+                         String phoneNumber,
+                         String address,
+                         String password) throws MatriculeExistException {
         User currentUser = userRepository.findByUserMatricule(matricule);
-        Role role = roleRepository.findByNom("ROLE_USER");
-        log.info("Entrée");
+        Role role = roleRepository.findByNom("USER");
         if (currentUser != null)
             throw new MatriculeExistException("");
         User user = new User();
         user.setNom(nom);
         user.setUserMatricule(matricule);
+        user.setPrenom(prenom);
+        user.setAddress(address);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
         user.setPassword(passwordEncoder.encode(password));
-        user.setActive(false);
-        user.setNotLocked(false);
+        user.setIsActive(false);
         user.getRoles().add(role);
         user.setJoinDate(new Date());
 
@@ -137,8 +187,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void resetPassword(String email) {
-
+    public void changePassword(String matricule, String password) {
+        var user = userRepository.findByUserMatricule(matricule);
+        user.setPassword(passwordEncoder.encode(password));
     }
 
     @Override

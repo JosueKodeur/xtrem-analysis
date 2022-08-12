@@ -13,7 +13,10 @@ public class AddForm {
     String newMatricule;
     String password;
     String nom;
+    String prenom;
+    String email;
+    String phoneNumber;
+    String address;
     String isActive;
-    String isNotLocked;
     String role;
 }

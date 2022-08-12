@@ -24,9 +24,6 @@ public class Prefecture implements Serializable {
     @Column(nullable = false, length = 40)
     private String nom;
 
-    @Column(nullable = false)
-    private Long nombreHabitant;
-
     @ManyToOne
     @JoinColumn(name = "region_id")
     private Region region;

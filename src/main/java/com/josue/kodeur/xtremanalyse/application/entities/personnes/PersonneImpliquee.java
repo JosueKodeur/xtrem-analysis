@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,73 +21,68 @@ import java.time.LocalDateTime;
 public class PersonneImpliquee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = true)
     private Long id;
 
-    @Column(name = "cni", nullable = false, length = 40)
+    @Column(name = "cni", nullable = true, length = 40)
     private String cni;
 
-    @Column(name = "nom", nullable = false, length = 40)
+    @Column(name = "nom", nullable = true, length = 40)
     private String nom;
 
-    @Column(name = "prenom", nullable = false, length = 40)
+    @Column(name = "prenom", nullable = true, length = 40)
     private String prenom;
 
     @Min(value = 0)
-    @Column(name = "age", nullable = false)
+    @Column(name = "age", nullable = true)
     private int age;
 
-    @Column(name = "sexe", nullable = false, length = 1)
-    private Character sexe;
+    @Column(name = "sexe", nullable = true, length = 1)
+    private String sexe;
 
-    @Column(name = "nationalite", nullable = false, length = 30)
+    @Column(name = "nationalite", nullable = true, length = 30)
     private String nationalite;
 
-    @Column(name = "lesion", nullable = false, length = 30)
+    @Column(name = "lesion", nullable = true, length = 30)
     private String lesion;
 
-    @Column(name = "protection", nullable = false)
+    @Column(name = "protection", nullable = true)
     private String protection;
 
-    @Column(name = "gravite", nullable = false, length = 40)
+    @Column(name = "gravite", nullable = true, length = 40)
     private String gravite;
 
-    @Column(name = "alcoolemie", nullable = false, length = 1)
+    @Column(name = "alcoolemie", nullable = true, length = 1)
     private Boolean alcoolemie;
 
-    @Column(name = "stupefiant", nullable = false, length = 1)
+    @Column(name = "stupefiant", nullable = true, length = 1)
     private Boolean stupefiant;
 
-    @Column(name = "type_permis", nullable = false, length = 20)
+    @Column(name = "type_permis", nullable = true, length = 20)
     private String typePermis;
 
-    @Column(name = "numero_permis", nullable = false, length = 40)
+    @Column(name = "numero_permis", nullable = true, length = 40)
     private String numeroPermis;
 
-    @Column(name = "annee_permis", nullable = false, length = 5)
+    @Column(name = "annee_permis", nullable = true, length = 5)
     private String anneePermis;
 
-    @Column(name = "pays_permis", nullable = false, length = 30)
+    @Column(name = "pays_permis", nullable = true, length = 30)
     private String paysPermis;
 
-    @OneToOne(mappedBy = "personneImpliquee", orphanRemoval = true)
-    private Vehicule vehicule;
-
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = true)
     private LocalDateTime createdAt;
 
-    @Column(name = "update_at", nullable = false)
+    @Column(name = "update_at", nullable = true)
     private LocalDateTime updateAt;
 
     @ManyToOne
-    @JoinColumn(name = "profession_id")
     private Profession profession;
 
     @ManyToOne
     private TypePersonne typePersonne;
 
     @ManyToOne
-    @JoinColumn(name = "accident_id")
-    private Accident accident;
+    private Vehicule vehicule;
 
 }

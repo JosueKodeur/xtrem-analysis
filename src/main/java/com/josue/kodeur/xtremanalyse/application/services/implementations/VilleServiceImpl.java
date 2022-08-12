@@ -25,7 +25,6 @@ public class VilleServiceImpl implements VilleService {
 
     private final PrefectureRepository prefectureLocationRepository;
     private final VilleRepository villeLocationRepository;
-    private final MapperService mapperService;
 
     @Override
     public Ville save(Ville ville) throws NotFoundException{
@@ -46,7 +45,6 @@ public class VilleServiceImpl implements VilleService {
                 .getPrefecture()
                 .getId()).orElseThrow(() -> new NotFoundException("Prefecture introuvable")));
         currentVille.setNom(ville.getNom());
-        currentVille.setNombreHabitant(ville.getNombreHabitant());
         currentVille.setUpdateAt(LocalDateTime.now());
         return currentVille;
     }
